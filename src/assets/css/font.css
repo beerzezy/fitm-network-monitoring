@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Prompt';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Prompt'), local('Prompt-Regular'),
+  url('../font/Prompt/prompt-v4-thai_latin-regular.woff2') format('woff2'), 
+  url('../font/Prompt/prompt-v4-thai_latin-regular.woff') format('woff');
+  unicode-range: U+0E00-U+0E7F, U+0020-U+007F;
+}
+@font-face {
+  font-family: 'Prompt';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('Prompt Medium'), local('Prompt-Medium'),
+  url('../font/Prompt/prompt-v4-thai_latin-500.woff2') format('woff2'), 
+  url('../font/Prompt/prompt-v4-thai_latin-500.woff') format('woff');
+  unicode-range: U+0E00-U+0E7F, U+0020-U+007F;
+}
+@font-face {
+  font-family: 'Prompt';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Prompt Bold'), local('Prompt-Bold'),
+  url('../font/Prompt/prompt-v4-thai_latin-700.woff2') format('woff2'), 
+  url('../font/Prompt/prompt-v4-thai_latin-700.woff') format('woff');
+  unicode-range: U+0E00-U+0E7F, U+0020-U+007F;
+}

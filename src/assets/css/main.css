@@ -1,0 +1,64 @@
+*, html {
+  font-family: 'Prompt';
+  font-size: 14px;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.dp-flex {
+  display: flex;
+}
+.jtf-ct-sp-ar {
+  justify-content: space-around;
+}
+.jtf-ct-center {
+  justify-content: center;
+}
+.al-i-center {
+  align-items: center;
+}
+.flex-50 {
+  flex: 50%;
+}
+.mag-l-40 {
+  margin-left: 40px;
+}
+.mag-t-40 {
+  margin-top: 40px;
+}
+.mag-t-20 {
+  margin-top: 20px;
+}
+.mag-t-60 {
+  margin-top: 60px;
+}
+.mag-b-40 {
+  margin-bottom: 40px;
+}
+
+.bg-ct {
+  border-radius: 20px;
+  border: 4px solid #039BE5;
+  background-color: #424242;
+}
+.bg-chart {
+  border-radius: 20px;
+  background-color: #ffffff;
+}
+.pad-chart {
+  padding: 20px 40px 40px 40px;
+}
+.pie-chiart-1 {
+  margin-right: 80px;
+}
+div .title-chart p{
+  font-size: 22px;
+  font-weight: 700;
+  color: #039BE5;
+}
+.select-device {
+  display: flex;
+  justify-content: space-between;
+}
