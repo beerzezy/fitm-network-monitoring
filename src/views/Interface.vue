@@ -56,7 +56,7 @@
           RSAD
         </v-btn>
       </div>
-      <div class="switch">
+      <div class="bg-ct pad-chart">
         <div class="title-chart">
           Interface <span> {{ device }} </span>
         </div>
