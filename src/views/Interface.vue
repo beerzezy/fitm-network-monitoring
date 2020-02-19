@@ -78,8 +78,8 @@
         </p>
         <div class="port-detail">
           <p>Status : {{ detailPort.status }}</p>
-          <p>Inbound : {{ detailPort.inbound }}</p>
-          <p>Outbound : {{ detailPort.outbound }}</p>
+          <p>Inbound : {{ detailPort.inbound }} MB</p>
+          <p>Outbound : {{ detailPort.outbound }} MB</p>
         </div>
         <div class="port-footer">
         </div>

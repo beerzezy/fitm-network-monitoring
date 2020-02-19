@@ -2,7 +2,7 @@ import axios from 'axios'
 import humps from 'humps'
 
 class HttpRequest {
-  constructor (url = 'https://ee91d64e.ngrok.io') {
+  constructor (url = 'https://98b4e2d9.ngrok.io') {
     this.axiosInstance = axios.create({
       baseURL: url,
       timeout: 120000
