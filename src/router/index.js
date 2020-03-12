@@ -25,6 +25,11 @@ const routes = [
     component: () => import('../views/Interface.vue')
   },
   {
+    path: '/traffic',
+    name: 'traffic',
+    component: () => import('../views/Traffic.vue')
+  },
+  {
     path: '/network',
     name: 'network',
     component: () => import('../views/Network.vue')

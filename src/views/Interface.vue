@@ -4,54 +4,62 @@
       <Navbar />
     </header>
     <v-container
-      class="mag-t-20"
+      class="mag-t-80"
       style="height: 100%;">
       <div class="select-device mag-b-40">
         <v-btn
           width="100"
-          color="cyan"
+          color="#039BE5"
+          class="white--text"
           @click="getInterface('r124')">
           R124
         </v-btn>
         <v-btn
           width="100"
-          color="cyan"
+          color="#039BE5"
+          class="white--text"
           @click="getInterface('r330a')">
           R330A
         </v-btn>
         <v-btn
           width="100"
-          color="cyan"
+          color="#039BE5"
+          class="white--text"
           @click="getInterface('r101c')">
           R101C
         </v-btn>
         <v-btn
           width="100"
-          color="cyan"
+          color="#039BE5"
+          class="white--text"
           @click="getInterface('r415')">
           R415
         </v-btn>
         <v-btn
           width="100"
-          color="cyan"
+          color="#039BE5"
+          class="white--text"
           @click="getInterface('rshop')">
           Rshop
         </v-btn>
         <v-btn
           width="100"
-          color="cyan"
+          color="#039BE5"
+          class="white--text"
           @click="getInterface('sw4503')">
           SW4503
         </v-btn>
         <v-btn
           width="100"
-          color="cyan"
+          color="#039BE5"
+          class="white--text"
           @click="getInterface('sw3850')">
           SW3850
         </v-btn>
         <v-btn
           width="100"
-          color="cyan"
+          color="#039BE5"
+          class="white--text"
           @click="getInterface('rsad')">
           RSAD
         </v-btn>
@@ -104,12 +112,12 @@ export default {
       detailPort: {}
     }
   },
-  async mounted () {
-    this.device = 'r124'
-    const res = await InterfaceProvider.fetchInterface('r124')
-    this.intInfo = res.data.filter(item => item.interface.match('GigabitEthernet'))
-    const index = 0
-    this.detailPort = this.intInfo[index]
+  created () {
+    this.getInterface('r124')
+
+    setInterval(() => {
+      this.getInterface(this.device)
+    }, 300000)
   },
   methods: {
     showDetail (item) {
@@ -139,7 +147,7 @@ export default {
     cursor: pointer;
   }
   .status-up {
-    background-color: #4caf50;
+    background-color: #00E676;
   }
   .status-down {
     background-color: #ff5252;
@@ -162,7 +170,7 @@ export default {
     color: #ffffff;
   }
   .port-detail p {
-    font-size: 24px;
+    font-size: 20px;
   }
   .port-footer {
     padding: 10px 40px;

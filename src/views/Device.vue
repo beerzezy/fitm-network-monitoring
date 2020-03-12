@@ -4,98 +4,221 @@
       <Navbar />
     </header>
     <div>
-      <v-container class="mag-t-20">
+      <v-container class="mag-t-80">
         <div class="select-device mag-b-40">
           <v-btn
             width="100"
-            color="cyan"
-            @click="device = 'R124'">
+            color="#039BE5"
+            class="white--text"
+            @click="getDeviceStatus('r124')">
             R124
           </v-btn>
           <v-btn
             width="100"
-            color="cyan"
-            @click="device = 'R330A'">
+            color="#039BE5"
+            class="white--text"
+            @click="getDeviceStatus('r330a')">
             R330A
           </v-btn>
           <v-btn
             width="100"
-            color="cyan"
-            @click="device = 'R101C'">
+            color="#039BE5"
+            class="white--text"
+            @click="getDeviceStatus('r101c')">
             R101C
           </v-btn>
           <v-btn
             width="100"
-            color="cyan"
-            @click="device = 'R415'">
+            color="#039BE5"
+            class="white--text"
+            @click="getDeviceStatus('r415')">
             R415
           </v-btn>
           <v-btn
             width="100"
-            color="cyan"
-            @click="device = 'Rshop'">
+            color="#039BE5"
+            class="white--text"
+            @click="getDeviceStatus('rshop')">
             Rshop
           </v-btn>
           <v-btn
             width="100"
-            color="cyan"
-            @click="device = 'SW4503'">
+            color="#039BE5"
+            class="white--text"
+            @click="getDeviceStatus('sw4503')">
             SW4503
           </v-btn>
           <v-btn
             width="100"
-            color="cyan"
-            @click="device = 'SW3850'">
+            color="#039BE5"
+            class="white--text"
+            @click="getDeviceStatus('sw3850')">
             SW3850
           </v-btn>
           <v-btn
             width="100"
-            color="cyan"
-            @click="device = 'RSAD'">
+            color="#039BE5"
+            class="white--text"
+            @click="getDeviceStatus('rsad')">
             RSAD
           </v-btn>
         </div>
-        <div class="dp-flex">
-          <div class="bg-ct flex-50 pie-chiart-1">
+        <div class="bg-ct">
+          <div class="pad-chart">
+            <div class="title-chart">
+              <p>Device Status <span> {{ device }} </span></p>
+            </div>
+            <v-row>
+              <v-col>
+                <div :class="tempLevel">
+                  <div class="pad-chart">
+                    <div class="title-sta">
+                      <p>Temperature</p>
+                      <v-row>
+                        <v-col
+                          cols="5"
+                          class="text-center">
+                          <v-icon class="icon-size">
+                            mdi-coolant-temperature
+                          </v-icon>
+                        </v-col>
+                        <v-col
+                          cols="7"
+                          class="pl-10">
+                          <span class="status-val">{{ deviceData.temperature }} C.</span>
+                        </v-col>
+                      </v-row>
+                    </div>
+                  </div>
+                </div>
+              </v-col>
+              <v-col>
+                <div class="status-box safe-sta">
+                  <div class="pad-chart pr-0">
+                    <div class="title-sta">
+                      <p>Uptime</p>
+                    </div>
+                    <v-row>
+                      <v-col
+                        cols="4"
+                        class="text-center">
+                        <v-icon class="icon-size">
+                          mdi-calendar
+                        </v-icon>
+                      </v-col>
+                      <v-col
+                        cols="8">
+                        <span
+                          id="uptime"
+                          class="status-val">{{ deviceData.upTime }}</span>
+                      </v-col>
+                    </v-row>
+                  </div>
+                </div>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <div :class="cpuLevel">
+                  <div class="pad-chart">
+                    <div class="title-sta">
+                      <p>CPU</p>
+                    </div>
+                    <v-row>
+                      <v-col
+                        cols="5"
+                        class="text-center">
+                        <v-icon class="icon-size">
+                          mdi-cpu-64-bit
+                        </v-icon>
+                      </v-col>
+                      <v-col
+                        cols="7"
+                        class="pl-8">
+                        <span
+                          id="cpu"
+                          class="status-val">{{ deviceData.cpu }} %</span>
+                      </v-col>
+                    </v-row>
+                  </div>
+                </div>
+              </v-col>
+              <v-col>
+                <div :class="memLevel">
+                  <div class="pad-chart">
+                    <div class="title-sta">
+                      <p>Memmory</p>
+                    </div>
+                    <v-row>
+                      <v-col
+                        cols="5"
+                        class="text-center">
+                        <v-icon class="icon-size">
+                          mdi-memory
+                        </v-icon>
+                      </v-col>
+                      <v-col
+                        cols="7"
+                        class="pl-10">
+                        <span class="status-val">{{ deviceData.memory }} MB</span>
+                      </v-col>
+                    </v-row>
+                  </div>
+                </div>
+              </v-col>
+            </v-row>
+          </div>
+        </div>
+        <!-- <div class="dp-flex">
+          <div class="bg-ct flex-50 mr-10">
             <div class="pad-chart">
               <div class="title-chart">
                 <p>Device Status</p>
               </div>
-              <div class="status mag-t-40">
-                <div class="status-box">
-                  <p>Temperature</p>
+              <div class="status mag-t-40 mt-12">
+                <div :class="tempLevel">
+                  <p class="title-sta">
+                    Temperature
+                  </p>
                   <div class="dp-flex al-i-center">
-                    <v-icon x-large>
+                    <v-icon large>
                       mdi-coolant-temperature
                     </v-icon>
-                    <span class="status-val">{{ showDevice.temp }}</span>
+                    <span class="status-val">{{ deviceData.temperature }} C</span>
                   </div>
                 </div>
-                <div class="status-box">
-                  <p>Uptime</p>
+                <div class="status-box safe-sta">
+                  <p class="title-sta">
+                    Uptime
+                  </p>
                   <div class="dp-flex al-i-center">
-                    <v-icon x-large>
+                    <v-icon large>
                       mdi-calendar
                     </v-icon>
-                    <span class="status-val">{{ showDevice.uptime }} Days</span>
+                    <span class="status-val">{{ deviceData.upTime }}</span>
                   </div>
                 </div>
-                <div class="status-box">
-                  <p>CPU</p>
+                <div :class="cpuLevel">
+                  <p class="title-sta">
+                    CPU
+                  </p>
                   <div class="dp-flex al-i-center">
-                    <v-icon x-large>
+                    <v-icon
+                      x-large>
                       mdi-cpu-64-bit
                     </v-icon>
-                    <span class="status-val">{{ showDevice.cpu }} %</span>
+                    <span class="status-val">{{ deviceData.cpu }} %</span>
                   </div>
                 </div>
-                <div class="status-box">
-                  <p>Memory</p>
+                <div :class="memLevel">
+                  <p class="title-sta">
+                    Memory
+                  </p>
                   <div class="dp-flex al-i-center">
                     <v-icon x-large>
                       mdi-memory
                     </v-icon>
-                    <span class="status-val">{{ showDevice.memory }} Mbs</span>
+                    <span class="status-val">{{ deviceData.memory }} MB</span>
                   </div>
                 </div>
               </div>
@@ -116,7 +239,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </v-container>
     </div>
   </div>
@@ -124,6 +247,7 @@
 
 <script>
 import Navbar from '@/components/Navbar.vue'
+import DeviceProvider from '@/resources/device_provider'
 
 export default {
   name: 'Device',
@@ -132,71 +256,15 @@ export default {
   },
   data () {
     return {
-      device: 'R124',
-      statusData: [
-        {
-          temp: 24,
-          uptime: 5,
-          cpu: 7,
-          memory: 168.41
-        },
-        {
-          temp: 26,
-          uptime: 3,
-          cpu: 10,
-          memory: 147.91
-        },
-        {
-          temp: 25,
-          uptime: 4,
-          cpu: 9,
-          memory: 167.13
-        },
-        {
-          temp: 24,
-          uptime: 5,
-          cpu: 10,
-          memory: 137.68
-        },
-        {
-          temp: 24,
-          uptime: 5,
-          cpu: 11,
-          memory: 164.87
-        },
-        {
-          temp: 25,
-          uptime: 4,
-          cpu: 14,
-          memory: 178.64
-        },
-        {
-          temp: 24,
-          uptime: 3,
-          cpu: 8,
-          memory: 118.49
-        },
-        {
-          temp: 24,
-          uptime: 3,
-          cpu: 9,
-          memory: 128.46
-        }
-      ],
+      device: '',
+      deviceData: [],
       chartSettings: {
-        metrics: ['Inbound', 'Outbound'],
-        dimension: ['Date']
+        metrics: ['inbound', 'outbound'],
+        dimension: ['timestamp']
       },
       chartData: {
-        columns: ['Date', 'Inbound', 'Outbound'],
-        rows: [
-          { Inbound: 152, Date: '21 Nov', Outbound: 152 },
-          { Inbound: 122, Date: '22 Nov', Outbound: 162 },
-          { Inbound: 212, Date: '23 Nov', Outbound: 142 },
-          { Inbound: 412, Date: '24 Nov', Outbound: 172 },
-          { Inbound: 312, Date: '25 Nov', Outbound: 152 },
-          { Inbound: 712, Date: '26 Nov', Outbound: 192 }
-        ]
+        columns: ['inbound', 'outbound'],
+        rows: []
       },
       colors: ['#e60000', '#00e6e6'],
       grid: {
@@ -207,23 +275,47 @@ export default {
     }
   },
   computed: {
-    showDevice () {
-      if (this.device === 'R124') {
-        return this.statusData[0]
-      } if (this.device === 'R330A') {
-        return this.statusData[1]
-      } if (this.device === 'R101C') {
-        return this.statusData[2]
-      } if (this.device === 'R415') {
-        return this.statusData[3]
-      } if (this.device === 'Rshop') {
-        return this.statusData[4]
-      } if (this.device === 'SW4503') {
-        return this.statusData[5]
-      } if (this.device === 'SW3850') {
-        return this.statusData[6]
+    tempLevel () {
+      if (this.deviceData.temperature < 30) {
+        return 'v'
       }
-      return this.statusData[7]
+      if (this.deviceData.temperature > 30 && this.deviceData.temperature < 50) {
+        return 'status-box warn-sta'
+      }
+      return 'status-box danger-sta'
+    },
+    cpuLevel () {
+      if (this.deviceData.cpu < 30) {
+        return 'status-box safe-sta'
+      }
+      if (this.deviceData.cpu > 30 && this.deviceData.cpu < 50) {
+        return 'status-box warn-sta'
+      }
+      return 'status-box danger-sta'
+    },
+    memLevel () {
+      if (this.deviceData.memory < 30) {
+        return 'status-box safe-sta'
+      }
+      if (this.deviceData.memory > 30 && this.deviceData.memory < 50) {
+        return 'status-box warn-sta'
+      }
+      return 'status-box danger-sta'
+    }
+  },
+  created () {
+    this.getDeviceStatus('r124')
+    setInterval(() => {
+      this.getDeviceStatus(this.device)
+    }, 300000)
+  },
+  methods: {
+    async getDeviceStatus (deviceName) {
+      this.device = deviceName
+      const response = await DeviceProvider.fetchDevice(deviceName)
+      if (response) {
+        this.deviceData = response.data
+      }
     }
   }
 }
@@ -236,17 +328,40 @@ export default {
     justify-content: space-around;
   }
   .status-box {
-    padding-top: 5px;
-    padding-left: 20px;
-    margin: 12px;
-    width: 200px;
-    height: 100px;
     background-color: #00e6b8;
     border-radius: 10px;
+    border: 2px solid black;
   }
   .status-val {
-    margin-left: 15px;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .v-icon.v-icon.icon-size {
+    font-size: 50px;
+  }
+  #uptime {
+    font-size: 24px;
+  }
+  #cpu {
+    font-size: 25px;
+  }
+  .flex-sta {
+    justify-content: center;
+    align-items: center;
+  }
+  .title-sta p {
+    margin-bottom: 10px;
     font-size: 22px;
     font-weight: 700;
+    color: black;
+  }
+  .safe-sta {
+    background-color: #00E676;
+  }
+  .warn-sta {
+    background-color: #FBC02D;
+  }
+  .danger-sta {
+    background-color:  #ff5252;
   }
 </style>

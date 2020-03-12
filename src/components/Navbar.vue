@@ -1,9 +1,8 @@
 <template>
   <div>
-    <v-toolbar color="grey darken-3">
-      <!-- <v-app-bar-nav-icon>
-        </v-app-bar-nav-icon> -->
-
+    <v-app-bar
+      fixed
+      color="grey darken-3">
       <div class="mag-l-40">
         <v-toolbar-title class="nav-title">
           FITM Monitoring
@@ -32,9 +31,10 @@
           Interface
         </v-btn>
         <v-btn
+          :to="{ name: 'traffic' }"
           text
           color="white">
-          Top 10 Rank
+          Traffic
         </v-btn>
         <v-btn
           :to="{ name: 'network' }"
@@ -46,7 +46,7 @@
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn> -->
       </v-toolbar-items>
-    </v-toolbar>
+    </v-app-bar>
   </div>
 </template>
 
