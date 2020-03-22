@@ -48,35 +48,100 @@
                       depressed
                       class="mr-5 white--text"
                       color="#FF0000"
-                      @click="getTopRankInbound">
+                      @click="topRank = 'inbound'">
                       Inbound
                     </v-btn>
                     <v-btn
                       depressed
                       class="white--text"
                       color="#039BE5"
-                      @click="getTopRankOutbound">
+                      @click="topRank = 'outbound'">
                       Outbound
                     </v-btn>
                   </v-row>
-                  <div class="dp-flex">
-                    <div class="flex-20">
-                      <p
-                        v-for="(item,index) in HisData.rows"
+                  <div class="bg-chart">
+                    <ve-histogram
+                      v-if="topRank === 'inbound'"
+                      height="350px"
+                      :data="inboundData"
+                      :settings="inboundSettings"
+                      :colors="inboundColors"
+                      :extend="extend">
+                    </ve-histogram>
+                    <ve-histogram
+                      v-else
+                      height="350px"
+                      :data="outboundData"
+                      :settings="outboundSettings"
+                      :colors="outboundColors"
+                      :extend="extend">
+                    </ve-histogram>
+                  </div>
+                  <div v-if="topRank === 'inbound'">
+                    <table>
+                      <tr>
+                        <th class="text-center">
+                          No.
+                        </th>
+                        <th class="text-center">
+                          Name
+                        </th>
+                        <th class="text-center">
+                          Network
+                        </th>
+                        <th class="text-center">
+                          Value (MB)
+                        </th>
+                      </tr>
+                      <tr
+                        v-for="(item,index) in inboundData.rows"
                         :key="index"
-                        style="color: lightgray;">
-                        {{ index + 1 }}. {{ item.interface }}
-                      </p>
-                    </div>
-                    <div class="bg-chart flex-80">
-                      <ve-histogram
-                        height="350px"
-                        :data="HisData"
-                        :settings="HisSettings"
-                        :colors="colors"
-                        :extend="extend">
-                      </ve-histogram>
-                    </div>
+                        style="color: lightgrey;">
+                        <td class="text-center">
+                          {{ index + 1 }}.
+                        </td>
+                        <td class="text-center">
+                          {{ item.interface }}
+                        </td>
+                        <td>{{ }}</td>
+                        <td class="text-center">
+                          {{ item.inbound }}
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div v-else>
+                    <table>
+                      <tr>
+                        <th class="text-center">
+                          No.
+                        </th>
+                        <th class="text-center">
+                          Name
+                        </th>
+                        <th class="text-center">
+                          Network
+                        </th>
+                        <th class="text-center">
+                          Value (MB)
+                        </th>
+                      </tr>
+                      <tr
+                        v-for="(item,index) in outboundData.rows"
+                        :key="index"
+                        style="color: lightgrey;">
+                        <td class="text-center">
+                          {{ index + 1 }}.
+                        </td>
+                        <td class="text-center">
+                          {{ item.interface }}
+                        </td>
+                        <td>{{ }}</td>
+                        <td class="text-center">
+                          {{ item.outbound }}
+                        </td>
+                      </tr>
+                    </table>
                   </div>
                 </div>
               </div>
@@ -105,6 +170,7 @@ export default {
     }
     return {
       device: '',
+      topRank: 'inbound',
       chartSettings: {
         metrics: ['inbound', 'outbound'],
         dimension: ['timestamp']
@@ -114,12 +180,22 @@ export default {
         rows: []
       },
       colors: ['#FF0000', '#039BE5'],
-      HisSettings: {
-        metrics: ['inbound', 'outbound'],
+      inboundColors: ['#FF0000'],
+      outboundColors: ['#039BE5'],
+      inboundSettings: {
+        metrics: ['inbound'],
         dimension: ['interface']
       },
-      HisData: {
-        columns: ['interface', 'inbound', 'outbound'],
+      inboundData: {
+        columns: ['interface', 'inbound'],
+        rows: []
+      },
+      outboundSettings: {
+        metrics: ['outbound'],
+        dimension: ['interface']
+      },
+      outboundData: {
+        columns: ['interface', 'outbound'],
         rows: []
       },
       // grid: {
@@ -142,11 +218,13 @@ export default {
   },
   mounted () {
     this.getTopRankInbound()
+    this.getTopRankOutbound()
     this.getSpeed()
     this.getCoreTraffic()
 
     setInterval(() => {
       this.getTopRankInbound()
+      this.getTopRankOutbound()
       this.getSpeed()
       this.getCoreTraffic()
     }, 300000)
@@ -155,13 +233,13 @@ export default {
     async getTopRankInbound () {
       const res = await TopRankProvider.fetchTopRankInbound()
       if (res) {
-        this.HisData.rows = res.data
+        this.inboundData.rows = res.data
       }
     },
     async getTopRankOutbound () {
       const res = await TopRankProvider.fetchTopRankOutbound()
       if (res) {
-        this.HisData.rows = res.data
+        this.outboundData.rows = res.data
       }
     },
     async getSpeed () {
@@ -195,5 +273,19 @@ export default {
     padding-top: 12px;
     margin-left: 170px;
     margin-right: 170px;
+  }
+  table {
+    margin: 0px auto;
+    margin-top: 30px;
+    width: 90%;
+  }
+  th {
+    padding-bottom: 10px;
+    color: #039BE5;
+    font-size: 18px;
+    border-bottom: 2px solid lightgray;
+  }
+  td {
+    padding: 10px 0px;
   }
 </style>

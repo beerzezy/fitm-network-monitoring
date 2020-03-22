@@ -276,10 +276,10 @@ export default {
   },
   computed: {
     tempLevel () {
-      if (this.deviceData.temperature < 30) {
-        return 'v'
+      if (this.deviceData.temperature < 50) {
+        return 'status-box safe-sta'
       }
-      if (this.deviceData.temperature > 30 && this.deviceData.temperature < 50) {
+      if (this.deviceData.temperature >= 50 && this.deviceData.temperature <= 60) {
         return 'status-box warn-sta'
       }
       return 'status-box danger-sta'
