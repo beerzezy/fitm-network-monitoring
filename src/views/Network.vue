@@ -102,29 +102,29 @@
               <span> Gi2/2 </span>
             </div>
             <div>
-              <div class="line4-4 on">
+              <div :class="linkDevice10dot1">
                 <span> Gi2/3 </span>
               </div>
-              <div class="link-1 on">
+              <div :class="linkDevice9dot2">
               </div>
             </div>
             <div>
-              <div class="line4-5 on">
+              <div :class="linkDevice11dot1">
                 <span> Gi2/4 </span>
               </div>
-              <div class="link-2 on">
+              <div :class="linkDevice10dot2">
               </div>
-              <div class="link-3 on">
-              </div>
-            </div>
-            <div class="mg-link">
-              <div class="link-4 on">
-              </div>
-              <div class="link-5 on">
+              <div :class="linkDevice9dot3">
               </div>
             </div>
             <div class="mg-link">
-              <div class="link-6 on">
+              <div :class="linkDevice11dot2">
+              </div>
+              <div :class="linkDevice10dot3">
+              </div>
+            </div>
+            <div class="mg-link">
+              <div :class="linkDevice11dot3">
               </div>
             </div>
           </div>
@@ -133,18 +133,18 @@
       <div id="row4">
         <div class="dp-flex">
           <div class="link-7 on">
-            <span> Gi0/49 </span>
+            <span> Gi0/1 </span>
           </div>
           <div :class="linkDevice8dot2">
             <span> Gi0/49 </span>
           </div>
-          <div :class="linkDevice9dot2">
+          <div :class="linkDevice9dot4">
             <span> Gi0/49 </span>
           </div>
-          <div class="line4-8 on">
+          <div :class="linkDevice10dot4">
             <span> Gi0/49 </span>
           </div>
-          <div class="line4-9 on">
+          <div :class="linkDevice11dot4">
             <span> Gi0/49 </span>
           </div>
         </div>
@@ -158,7 +158,7 @@
               src="@/assets/img/switch.png"
               alt="r101c"
               class="img-device r-101c">
-            <div class="line6 on">
+            <div :class="linkDevice12">
               <v-row>
                 <span> Gi0/49 </span>
                 <v-spacer></v-spacer>
@@ -169,7 +169,7 @@
               src="@/assets/img/switch.png"
               alt="r124"
               class="img-device r-124">
-            <div class="line7 on">
+            <div :class="linkDevice13">
               <v-row>
                 <span> Gi0/51 </span>
                 <v-spacer></v-spacer>
@@ -180,7 +180,7 @@
               src="@/assets/img/switch.png"
               alt="r415"
               class="img-device r-415">
-            <div class="line8 on">
+            <div :class="linkDevice14">
               <v-row>
                 <span> Gi0/52 </span>
                 <v-spacer></v-spacer>
@@ -200,7 +200,7 @@
       </div>
       <div id="row6">
         <div class="dp-flex">
-          <div class="link-8"></div>
+          <div class="link-8 on"></div>
           <div>
             <span>R101C</span>
           </div>
@@ -210,7 +210,7 @@
           <div class="label-415">
             <span>R415</span>
           </div>
-          <div class="line10">
+          <div class="line10 on">
             <span> Gi0/50 </span>
           </div>
           <div class="label-330a">
@@ -223,14 +223,14 @@
       </div>
       <div id="row7">
         <div class="dp-flex">
-          <div class="line11">
+          <div class="line11 on">
             <span> Gi0/49</span>
           </div>
           <img
             src="@/assets/img/switch.png"
             alt="rshop"
             class="img-device r-shop">
-          <div class="line12">
+          <div class="line12 on">
             <span> Gi0/50 </span>
           </div>
         </div>
@@ -265,41 +265,53 @@ export default {
       }
       return 'line2 off'
     },
-    linkDevice2 () {
+    linkDevice2dot1 () {
       if (this.networkData.sw4503[5].status === 'up') {
-        return 'line2 on'
+        return 'line4 on'
       }
-      return 'line2 off'
+      return 'line4 off'
     },
-    linkDevice3 () {
+    linkDevice2dot2 () {
       if (this.networkData.sw4503[5].status === 'up') {
-        return 'line2 on'
+        return 'line4-1 on'
       }
-      return 'line2 off'
+      return 'line4-1 off'
+    },
+    linkDevice2dot3 () {
+      if (this.networkData.sw4503[5].status === 'up') {
+        return 'line4 on'
+      }
+      return 'line4 off'
+    },
+    linkDevice3dot2 () {
+      if (this.networkData.sw4503[5].status === 'up') {
+        return 'link-7 on'
+      }
+      return 'link-7 off'
     },
     linkDevice4 () {
       if (this.networkData.sw4503[5].status === 'up') {
-        return 'line2 on'
+        return 'line3 on'
       }
-      return 'line2 off'
+      return 'line3 off'
     },
     linkDevice5 () {
       if (this.networkData.sw4503[5].status === 'up') {
-        return 'line2 on'
+        return 'line3 on'
       }
-      return 'line2 off'
+      return 'line3 off'
     },
     linkDevice6 () {
       if (this.networkData.sw4503[5].status === 'up') {
-        return 'line2 on'
+        return 'line3 on'
       }
-      return 'line2 off'
+      return 'line3 off'
     },
     linkDevice7 () {
       if (this.networkData.sw4503[5].status === 'up') {
-        return 'line2 on'
+        return 'line3 on'
       }
-      return 'line2 off'
+      return 'line3 off'
     },
     linkDevice8dot1 () {
       if (this.networkData.sw4503[9].status === 'up' && this.networkData.r124[1].status === 'up') {
@@ -321,9 +333,87 @@ export default {
     },
     linkDevice9dot2 () {
       if (this.networkData.sw4503[6].status === 'up' && this.networkData.r415[0].status === 'up') {
+        return 'link-1 on'
+      }
+      return 'link-1 off'
+    },
+    linkDevice9dot3 () {
+      if (this.networkData.sw4503[6].status === 'up' && this.networkData.r415[0].status === 'up') {
+        return 'link-3 on'
+      }
+      return 'link-3 off'
+    },
+    linkDevice9dot4 () {
+      if (this.networkData.sw4503[6].status === 'up' && this.networkData.r415[0].status === 'up') {
         return 'line4-7 on'
       }
       return 'line4-7 off'
+    },
+    linkDevice10dot1 () {
+      if (this.networkData.sw4503[7].status === 'up' && this.networkData.r330a[0].status === 'up') {
+        return 'line4-4 on'
+      }
+      return 'line4-4 off'
+    },
+    linkDevice10dot2 () {
+      if (this.networkData.sw4503[7].status === 'up' && this.networkData.r330a[0].status === 'up') {
+        return 'link-2 on'
+      }
+      return 'link-2 off'
+    },
+    linkDevice10dot3 () {
+      if (this.networkData.sw4503[7].status === 'up' && this.networkData.r330a[0].status === 'up') {
+        return 'link-5 on'
+      }
+      return 'link-5 off'
+    },
+    linkDevice10dot4 () {
+      if (this.networkData.sw4503[7].status === 'up' && this.networkData.r330a[0].status === 'up') {
+        return 'line4-8 on'
+      }
+      return 'line4-8 off'
+    },
+    linkDevice11dot1 () {
+      if (this.networkData.sw4503[8].status === 'up') {
+        return 'line4-5 on'
+      }
+      return 'line4-5 off'
+    },
+    linkDevice11dot2 () {
+      if (this.networkData.sw4503[8].status === 'up') {
+        return 'link-4 on'
+      }
+      return 'link-4 off'
+    },
+    linkDevice11dot3 () {
+      if (this.networkData.sw4503[8].status === 'up') {
+        return 'link-6 on'
+      }
+      return 'link-6 off'
+    },
+    linkDevice11dot4 () {
+      if (this.networkData.sw4503[8].status === 'up') {
+        return 'line4-9 on'
+      }
+      return 'line4-9 off'
+    },
+    linkDevice12 () {
+      if (this.networkData.r101c[1].status === 'up' && this.networkData.r124[0].status === 'up') {
+        return 'line6 on'
+      }
+      return 'line6 off'
+    },
+    linkDevice13 () {
+      if (this.networkData.r124[2].status === 'up' && this.networkData.r415[2].status === 'up') {
+        return 'line7 on'
+      }
+      return 'line7 off'
+    },
+    linkDevice14 () {
+      if (this.networkData.r415[3].status === 'up' && this.networkData.r330a[1].status === 'up') {
+        return 'line8 on'
+      }
+      return 'line8 off'
     }
   },
   mounted () {
