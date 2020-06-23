@@ -5,6 +5,36 @@
     </header>
     <div class="y-scroll">
       <div class="contain mx-10">
+        <div class="custom-time mb-5">
+          <v-btn
+            width="100"
+            color="#039BE5"
+            class="white--text mx-10"
+            @click="getTraffic()">
+            Now
+          </v-btn>
+          <v-btn
+            width="100"
+            color="#039BE5"
+            class="white--text mx-10"
+            @click="getTrafficType('hours')">
+            Hours
+          </v-btn>
+          <v-btn
+            width="100"
+            color="#039BE5"
+            class="white--text mx-10"
+            @click="getTrafficType('days')">
+            Days
+          </v-btn>
+          <v-btn
+            width="100"
+            color="#039BE5"
+            class="white--text mx-10"
+            @click="getTrafficType('month')">
+            Month
+          </v-btn>
+        </div>
         <v-row>
           <v-col cols="6">
             <div class="bg-ct">
@@ -184,6 +214,7 @@ export default {
         'rsad'
       ],
       loading: false,
+      timeType: 'now',
       chartSettings: {
         metrics: ['inbound', 'outbound'],
         dimension: ['timestamp']
@@ -236,16 +267,20 @@ export default {
     this.loading = false
     setInterval(() => {
       this.loading = true
-      this.getTraffic(this.device[0])
-      this.getTraffic(this.device[1])
-      this.getTraffic(this.device[2])
-      this.getTraffic(this.device[3])
-      this.getTraffic(this.device[4])
-      this.getTraffic(this.device[5])
-      this.getTraffic(this.device[6])
-      this.getTraffic(this.device[7])
+      if (this.timeType === 'now') {
+        this.getTraffic(this.device[0])
+        this.getTraffic(this.device[1])
+        this.getTraffic(this.device[2])
+        this.getTraffic(this.device[3])
+        this.getTraffic(this.device[4])
+        this.getTraffic(this.device[5])
+        this.getTraffic(this.device[6])
+        this.getTraffic(this.device[7])
+      } else {
+        this.getTrafficType(this.timeType)
+      }
       this.loading = false
-    }, 300000)
+    }, 60000)
   },
   methods: {
     async getTraffic (deviceName) {
@@ -276,11 +311,36 @@ export default {
       } else {
         this.rsadData.rows = res.data
       }
+
+      this.timeType = 'now'
+    },
+    async getTrafficType (timeType) {
+      this.timeType = timeType
+      const resR124 = await TrafficProvider.fetchTrafficType('r124', this.timeType)
+      const resR330A = await TrafficProvider.fetchTrafficType('r330a', this.timeType)
+      const resR101C = await TrafficProvider.fetchTrafficType('r101c', this.timeType)
+      const resR415 = await TrafficProvider.fetchTrafficType('r415', this.timeType)
+      const resRSHOP = await TrafficProvider.fetchTrafficType('rshop', this.timeType)
+      const resSW4503 = await TrafficProvider.fetchTrafficType('sw4503', this.timeType)
+      const resSW3850 = await TrafficProvider.fetchTrafficType('sw3850', this.timeType)
+      const resRSAD = await TrafficProvider.fetchTrafficType('rsad', this.timeType)
+
+      this.r124Data.rows = resR124.data
+      this.r330aData.rows = resR330A.data
+      this.r101cData.rows = resR101C.data
+      this.r415Data.rows = resR415.data
+      this.rshopData.rows = resRSHOP.data
+      this.sw4503Data.rows = resSW4503.data
+      this.sw3850Data.rows = resSW3850.data
+      this.rsadData.rows = resRSAD.data
     }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+  .custom-time {
+    display: flex;
+    justify-content: center;
+  }
 </style>

@@ -5,6 +5,11 @@ class TrafficProvider extends HttpRequest {
     const data = this.fetch(`/traffic/${deviceName}?startAt=${start}&endAt=${end}`)
     return data
   }
+
+  async fetchTrafficType (deviceName, type) {
+    const data = this.fetch(`/traffic/${deviceName}/${type}`)
+    return data
+  }
 }
 
 export default new TrafficProvider()
