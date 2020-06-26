@@ -7,7 +7,7 @@
           src="@/assets/img/icon/FITM_LOGO.png"
           alt="FITM_LOGO">
       </div>
-      <v-text-field
+      <v-text-field v-model="username"
         placeholder="Username">
         <v-icon
           slot="append"
@@ -15,7 +15,7 @@
           mdi-account-outline
         </v-icon>
       </v-text-field>
-      <v-text-field
+      <v-text-field v-model="userpassword" type="password"
         placeholder="Password">
         <v-icon
           slot="append"
@@ -27,7 +27,7 @@
         <v-btn
           class="submit-login"
           color="primary"
-          @click="login">
+          @click="login()">
           GO!
         </v-btn>
       </div>
@@ -36,17 +36,31 @@
 </template>
 
 <script>
+import swal from 'sweetalert'
+
+const UserName = 'admin'
+const UserPassword = 'admin'
 
 export default {
   name: 'Login',
   data () {
     return {
-
+      username: null,
+      userpassword: null
     }
   },
   methods: {
     login () {
-      this.$router.push({ name: 'dashboard' })
+      if (this.username == 'admin' && this.userpassword == 'admin') {
+        localStorage.setItem("login_status", 'logged')
+        this.$router.push({ name: 'dashboard' })
+        swal('', 'Login Success', 'success', {
+          buttons: false,
+          timer: 1000
+        })
+      } else {
+
+      }
     }
   }
 }

@@ -42,6 +42,11 @@
           color="white">
           Network
         </v-btn>
+        <v-btn @click="logout()"
+          text
+          color="white">
+          Logout
+        </v-btn>
         <!-- <v-btn icon>
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn> -->
@@ -51,9 +56,20 @@
 </template>
 
 <script>
+import swal from 'sweetalert'
 
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  methods: {
+    logout () {
+      localStorage.removeItem('login_status')
+      this.$router.push({ name: 'login' })
+      swal('', 'Logout Success', 'success', {
+        buttons: false,
+        timer: 1000
+      })
+    }
+  }
 }
 </script>
 

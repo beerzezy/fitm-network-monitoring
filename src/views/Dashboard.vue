@@ -23,7 +23,7 @@
             <div class="bg-ct flex-62">
               <div class="pad-chart pb-0">
                 <div class="title-chart">
-                  <p>Internet Traffic SW4503</p>
+                  <p>Internet Traffic SW9400</p>
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -256,7 +256,7 @@ export default {
       const stFormat = this.$moment(stTime).format('x')
       const edFormat = this.$moment(edTime).format('x')
 
-      const res = await TrafficProvider.fetchTraffic('sw4503', stFormat.substr(0, 10), edFormat.substr(0, 10))
+      const res = await TrafficProvider.fetchTraffic('sw9400', stFormat.substr(0, 10), edFormat.substr(0, 10))
       if (res) {
         this.chartData.rows = res.data
       }
