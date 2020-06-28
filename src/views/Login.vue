@@ -59,7 +59,9 @@ export default {
           timer: 1000
         })
       } else {
-
+        swal('', 'Username and/or Password invalid', 'error', {
+          icon: 'error'
+        })
       }
     }
   }
