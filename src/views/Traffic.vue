@@ -17,7 +17,7 @@
             width="100"
             color="#039BE5"
             class="white--text mx-10"
-            @click="getTrafficType('hours')">
+            @click="getTrafficType('hours'), celarData()">
             Hours
           </v-btn>
           <v-btn
@@ -333,7 +333,10 @@ export default {
       this.sw4503Data.rows = resSW4503.data
       this.sw3850Data.rows = resSW3850.data
       this.rsadData.rows = resRSAD.data
-    }
+    },
+    celarData () {
+      this.r101cData.rows = []
+    } 
   }
 }
 </script>
