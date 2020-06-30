@@ -10,7 +10,7 @@
             width="100"
             color="#039BE5"
             class="white--text mx-10"
-            @click="getTraffic()">
+            @click="getTraffic() , celarData()">
             Now
           </v-btn>
           <v-btn
@@ -24,14 +24,14 @@
             width="100"
             color="#039BE5"
             class="white--text mx-10"
-            @click="getTrafficType('days')">
+            @click="getTrafficType('days'), celarData()">
             Days
           </v-btn>
           <v-btn
             width="100"
             color="#039BE5"
             class="white--text mx-10"
-            @click="getTrafficType('month')">
+            @click="getTrafficType('month'), celarData()">
             Month
           </v-btn>
         </div>
@@ -335,7 +335,15 @@ export default {
       this.rsadData.rows = resRSAD.data
     },
     celarData () {
+      this.r124Data.rows = []
       this.r101cData.rows = []
+      this.r330aData.rows = []
+      this.r101cData.rows = []
+      this.r415Data.rows = []
+      this.rshopData.rows = []
+      this.sw4503Data.rows = []
+      this.sw3850Data.rows = []
+      this.rsadData.rows = []
     } 
   }
 }
