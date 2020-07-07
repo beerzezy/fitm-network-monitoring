@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 
 import VCharts from 'v-charts'
 import 'v-charts/lib/style.css'
@@ -16,10 +17,16 @@ import '@/assets/css/main.css'
 
 import App from './App.vue'
 
+// import 'bootstrap/dist/css/bootstrap.css'
+// import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.config.productionTip = false
 
 Vue.use(VCharts)
 Vue.use(moment)
+
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 
 Vue.prototype.$moment = moment
 

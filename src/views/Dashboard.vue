@@ -86,9 +86,9 @@
                         <th class="text-center">
                           Name
                         </th>
-                        <th class="text-center">
+                        <!-- <th class="text-center">
                           Network
-                        </th>
+                        </th> -->
                         <th class="text-center">
                           Value (MB)
                         </th>
@@ -103,7 +103,7 @@
                         <td class="text-center">
                           {{ item.interface }}
                         </td>
-                        <td>{{ }}</td>
+                        <!-- <td>{{ }}</td> -->
                         <td class="text-center">
                           {{ item.inbound }}
                         </td>
@@ -265,7 +265,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .dashboard {
     height: 100%;
   }

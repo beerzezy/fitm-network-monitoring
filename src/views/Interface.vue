@@ -1,12 +1,11 @@
 <template>
   <div>
     <header>
-      <Navbar />
+      <Navbar/>
     </header>
-    <v-container
-      class="mag-t-80"
-      style="height: 100%;">
-      <div class="select-device mag-b-40">
+    <v-container style="text-align:center;margin-top:200px;">
+      <R124/>
+      <!-- <div class="select-device mag-b-40">
         <v-btn
           width="100"
           color="#039BE5"
@@ -91,19 +90,21 @@
         </div>
         <div class="port-footer">
         </div>
-      </div>
+      </div> -->
     </v-container>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue'
+import R124 from '@/components/interface/r124.vue'
 import InterfaceProvider from '@/resources/interface_provider'
 
 export default {
   name: 'Dashboard',
   components: {
-    Navbar
+    Navbar,
+    R124
   },
   data () {
     return {
