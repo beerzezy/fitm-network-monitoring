@@ -4,7 +4,7 @@
       <Navbar/>
     </header>
     <v-container style="text-align:center;margin-top:200px;">
-      <R124/>
+      <R124 :interfaceInfo="intInfo" />
       <!-- <div class="select-device mag-b-40">
         <v-btn
           width="100"

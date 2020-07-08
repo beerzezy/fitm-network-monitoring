@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="title">Interface : R124 </h1>
+        <h1 class="title">Interface : R124</h1>
         <div class="container">
             <div class="row">
                 <div class="col left">
@@ -11,12 +11,12 @@
                                 <table id="r124">
                                     <tr>
                                         <td id="gig01">
-                                            <span v-if="interfaceInfo[0].status == 'up'">
+                                            <span v-if="true">
                                                 <button @click="getInterface('r124')">
                                                     <img src="@/assets/img/status/top-up.jpg">
                                                 </button>
                                             </span>
-                                            <span v-else-if="interfaceInfo[0].status == 'down'">
+                                            <span v-else-if="false">
                                                 <button @click="getInterface('r124')">
                                                     <img src="@/assets/img/status/top-down.jpg">
                                                 </button>
@@ -78,7 +78,6 @@
 
 <script>
 export default {
-    props: ['interfaceInfo'],
     data () {
         return {
             msg: 'test'
