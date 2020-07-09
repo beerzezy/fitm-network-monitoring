@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="title">Interface : R124 </h1>
+        <p class="title">Interface : {{deviceName.toUpperCase()}} </p>
         <div class="container">
             <div class="row">
                 <div class="col left">
@@ -12,59 +12,345 @@
                                     <tr>
                                         <td id="gig01">
                                             <span v-if="interfaceInfo[0].status == 'up'">
-                                                <button @click="getInterface('r124')">
+                                                <button @click="showDetail(0)">
                                                     <img src="@/assets/img/status/top-up.jpg">
                                                 </button>
                                             </span>
                                             <span v-else-if="interfaceInfo[0].status == 'down'">
-                                                <button @click="getInterface('r124')">
+                                                <button @click="showDetail(0)">
                                                     <img src="@/assets/img/status/top-down.jpg">
                                                 </button>
                                             </span>
                                         </td>
-                                        <td id="gig03"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig05"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig07"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig09"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig03">
+                                            <span v-if="interfaceInfo[18].status == 'up'">
+                                                <button @click="showDetail(18)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[18].status == 'down'">
+                                                <button @click="showDetail(18)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig05">
+                                            <span v-if="interfaceInfo[20].status == 'up'">
+                                                <button @click="showDetail(20)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[20].status == 'down'">
+                                                <button @click="showDetail(20)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig07">
+                                            <span v-if="interfaceInfo[22].status == 'up'">
+                                                <button @click="showDetail(22)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[22].status == 'down'">
+                                                <button @click="showDetail(22)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig09">
+                                            <span v-if="interfaceInfo[24].status == 'up'">
+                                                <button @click="showDetail(24)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[24].status == 'down'">
+                                                <button @click="showDetail(24)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
                                         <td id="gig11"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
                                     </tr>
                                     <tr>
-                                        <td id="gig02"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig04"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig06"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig08"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig10"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig12"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig02">
+                                            <span v-if="interfaceInfo[1].status == 'up'">
+                                                <button @click="showDetail(1)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[1].status == 'down'">
+                                                <button @click="showDetail(1)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig04">
+                                            <span v-if="interfaceInfo[19].status == 'up'">
+                                                <button @click="showDetail(19)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[19].status == 'down'">
+                                                <button @click="showDetail(19)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig06">
+                                            <span v-if="interfaceInfo[21].status == 'up'">
+                                                <button @click="showDetail(21)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[21].status == 'down'">
+                                                <button @click="showDetail(21)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig08">
+                                            <span v-if="interfaceInfo[23].status == 'up'">
+                                                <button @click="showDetail(23)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[23].status == 'down'">
+                                                <button @click="showDetail(23)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig10">
+                                            <span v-if="interfaceInfo[2].status == 'up'">
+                                                <button @click="showDetail(2)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[2].status == 'down'">
+                                                <button @click="showDetail(2)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig12">
+                                            <span v-if="interfaceInfo[4].status == 'up'">
+                                                <button @click="showDetail(4)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[4].status == 'down'">
+                                                <button @click="showDetail(4)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
                             <td>
                                 <table id="r124">
                                     <tr>
-                                        <td id="gig13"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig15"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig17"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig19"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig21"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig23"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig13">
+                                            <span v-if="interfaceInfo[5].status == 'up'">
+                                                <button @click="showDetail(5)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[5].status == 'down'">
+                                                <button @click="showDetail(5)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig15">
+                                            <span v-if="interfaceInfo[7].status == 'up'">
+                                                <button @click="showDetail(7)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[7].status == 'down'">
+                                                <button @click="showDetail(7)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig17">
+                                            <span v-if="interfaceInfo[9].status == 'up'">
+                                                <button @click="showDetail(9)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[9].status == 'down'">
+                                                <button @click="showDetail(9)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig19">
+                                            <span v-if="interfaceInfo[11].status == 'up'">
+                                                <button @click="showDetail(11)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[11].status == 'down'">
+                                                <button @click="showDetail(11)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig21">
+                                            <span v-if="interfaceInfo[14].status == 'up'">
+                                                <button @click="showDetail(14)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[14].status == 'down'">
+                                                <button @click="showDetail(14)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig23">
+                                            <span v-if="interfaceInfo[16].status == 'up'">
+                                                <button @click="showDetail(16)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[16].status == 'down'">
+                                                <button @click="showDetail(16)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td id="gig14"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig16"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig18"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig20"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig22"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig24"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig14">
+                                            <span v-if="interfaceInfo[6].status == 'up'">
+                                                <button @click="showDetail(6)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[6].status == 'down'">
+                                                <button @click="showDetail(6)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig16">
+                                            <span v-if="interfaceInfo[8].status == 'up'">
+                                                <button @click="showDetail(8)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[8].status == 'down'">
+                                                <button @click="showDetail(8)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig18">
+                                            <span v-if="interfaceInfo[10].status == 'up'">
+                                                <button @click="showDetail(10)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[10].status == 'down'">
+                                                <button @click="showDetail(10)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig20">
+                                            <span v-if="interfaceInfo[13].status == 'up'">
+                                                <button @click="showDetail(13)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[13].status == 'down'">
+                                                <button @click="showDetail(13)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig22">
+                                            <span v-if="interfaceInfo[15].status == 'up'">
+                                                <button @click="showDetail(15)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[15].status == 'down'">
+                                                <button @click="showDetail(15)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig24">
+                                            <span v-if="interfaceInfo[17].status == 'up'">
+                                                <button @click="showDetail(17)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[17].status == 'down'">
+                                                <button @click="showDetail(17)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
                             <td style="width:240px;">
                                 <table id="r124" style="margin-top:38px;">
                                     <tr>
-                                        <td id="gig1-1-1"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="gig1-1-2"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="ten1-1-3"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
-                                        <td id="ten1-1-4"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig1-1-1">
+                                            <span v-if="interfaceInfo[25].status == 'up'">
+                                                <button @click="showDetail(25)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[25].status == 'down'">
+                                                <button @click="showDetail(25)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig1-1-2">
+                                            <span v-if="interfaceInfo[26].status == 'up'">
+                                                <button @click="showDetail(26)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[26].status == 'down'">
+                                                <button @click="showDetail(26)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="ten1-1-3">
+                                            <span v-if="interfaceInfo[27].status == 'up'">
+                                                <button @click="showDetail(27)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[27].status == 'down'">
+                                                <button @click="showDetail(27)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="ten1-1-4">
+                                            <span v-if="interfaceInfo[28].status == 'up'">
+                                                <button @click="showDetail(28)">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="interfaceInfo[28].status == 'down'">
+                                                <button @click="showDetail(28)">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
@@ -73,36 +359,90 @@
                 </div>
             </div>
         </div>
+
+        <div v-if="flagShowDetail" class="port-info mt-10" style="margin:auto;">
+          <p class="port-title">
+            {{detailPort.interface}}
+            <span style="float:right;">
+                <button @click="validateShowPort()" title="Shut Down Port" class="button button1">
+                    <img src="@/assets/img/icon/icons-shutdown.png" style="width:35px;height:35px;">
+                </button>
+            </span>
+          </p>
+          <div class="port-detail">
+            <p>Status : {{ detailPort.status }}</p>
+            <p>Inbound : {{ detailPort.inbound }} MB</p>
+            <p>Outbound : {{ detailPort.outbound }} MB</p>
+          </div>
+          <div class="port-footer"></div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['interfaceInfo'],
+    props: ['interfaceInfo', 'deviceName'],
     data () {
         return {
-            msg: 'test'
+            detailPort: '',
+            flagShowDetail: false
         }
     },
+    created () {
+        this.setDefalutDetailPort()
+    },
     methods: {
-        getInterface (interfave) {
-            alert(interfave)
+        showDetail (index) {
+            this.flagShowDetail = true
+            this.detailPort = this.interfaceInfo[index]
+        },
+        setDefalutDetailPort () {
+            this.detailPort = this.interfaceInfo[0]
+        },
+        setShowDetail () {
+            this.flagShowDetail = false
+        },
+        shutPort () {
+            console.log('shutPort')
+        },
+        validateShowPort () {
+            swal({
+                content: {
+                    element: "input",
+                    attributes: {
+                        placeholder: "Password",
+                        type: "password",
+                    }
+                }
+            })
+            .then((value) => {
+                if (value == 'admin') {
+                    swal('', 'Success', 'success', {
+                        buttons: false,
+                        timer: 1000
+                    }).then(this.shutPort())
+                } else {
+                    swal('', 'Invalid Password', 'error', {
+                        icon: 'error'
+                    })
+                }
+            });
         }
     }
-}
+} 
 </script>
 
 <style scoped>
 .container {
     width: 1432px;
-    height: 500px;
-    margin-top: 10px;
+    margin-top: 35px;
     /* border: 1px solid #ddd; */
     background-image: url("../../assets/img/device/sw3600.jpg");
 }
 
 .title {
-    margin-left: 165px;
+    font-size: 50px;
+    color: #fff;
     text-align: left;
 }
 
@@ -111,6 +451,37 @@ export default {
     height: 500px;
     /* border: 1px solid #ddd; */
     background-image: url("../../assets/img/device/sw3600.jpg");
+}
+
+.port-title {
+    text-align: left;
+    padding: 10px 40px;
+    background-color: #ffffff;
+    font-size: 24px;
+}
+
+.port-detail {
+    text-align: left;
+    padding: 20px 40px;
+    padding-top: 10px;
+    color: #ffffff;
+    
+}
+.port-detail p{
+    font-size: 20px;
+}
+.port-info {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    border: 4px solid #039BE5;
+    background-color: #424242;
+    width: 1432px;
+}
+
+.port-footer {
+    padding: 10px 40px;
+    background-color: #ffffff;
 }
 
 #gig01 img {
@@ -254,4 +625,5 @@ export default {
     height: 32px;
     border-radius: 3px;
 }
+
 </style>
