@@ -4,70 +4,70 @@
       <Navbar/>
     </header>
     <v-container style="text-align:center;margin-top:80px;">
-    
+
     <div class="select-device mag-b-40">
       <v-btn
           width="100"
           color="#039BE5"
           class="white--text"
-          @click="getInterface('r124'), showDetail()">
+          @click="getInterface('r124'), showDetail('sw3650')">
           R124 
         </v-btn>
         <v-btn
           width="100"
           color="#039BE5"
           class="white--text"
-          @click="getInterface('r330a'), showDetail()">
+          @click="getInterface('r330a'), showDetail('sw3650')">
           R330A
         </v-btn>
         <v-btn
           width="100"
           color="#039BE5"
           class="white--text"
-          @click="getInterface('r101c'), showDetail()">
+          @click="getInterface('r101c'), showDetail('sw3650')">
           R101C
         </v-btn>
         <v-btn
           width="100"
           color="#039BE5"
           class="white--text"
-          @click="getInterface('r415'), showDetail()">
+          @click="getInterface('r415'), showDetail('sw365048TS')">
           R415
         </v-btn>
         <v-btn
           width="100"
           color="#039BE5"
           class="white--text"
-          @click="getInterface('rshop'), showDetail()">
+          @click="getInterface('rshop'), showDetail('sw3650')">
           Rshop
         </v-btn>
         <v-btn
           width="100"
           color="#039BE5"
           class="white--text"
-          @click="getInterface('sw4503'), showDetail()">
-          SW4503
+          @click="getInterface('sw9400')">
+          SW9400
         </v-btn>
         <v-btn
           width="100"
           color="#039BE5"
           class="white--text"
-          @click="getInterface('sw3850'), showDetail()">
+          @click="getInterface('sw3850'), showDetail('sw3850')">
           SW3850
         </v-btn>
         <v-btn
           width="100"
           color="#039BE5"
           class="white--text"
-          @click="getInterface('rsad'), showDetail()">
+          @click="getInterface('rsad')">
           RSAD
         </v-btn>
       
       </div>
       <div class="bg-ct pad-chart" style="height: 624px;">
-        
-        <R124 v-if="flag" :interfaceInfo="intInfo" :deviceName="device" ref="form"/>
-
+        <SW3650 v-if="flag == true && viewDevice == 'sw3650'" :interfaceInfo="intInfo" :deviceName="device" ref="form"/>
+        <SW3850 v-if="flag == true && viewDevice == 'sw3850'" :interfaceInfo="intInfo" :deviceName="device" ref="form"/>
+        <SW365048TS v-if="flag == true && viewDevice == 'sw365048TS'" :interfaceInfo="intInfo" :deviceName="device" ref="form"/>
         <!-- <div class="port-info mt-10" style="margin:auto;">
           <p class="port-title">
             {{ detailPort.interface }}
@@ -173,21 +173,26 @@
 
 <script>
 import Navbar from '@/components/Navbar.vue'
-import R124 from '@/components/interface/r124.vue'
+import SW3650 from '@/components/interface/sw3650.vue'
+import SW3850 from '@/components/interface/sw3850.vue'
+import SW365048TS from '@/components/interface/sw365048ts.vue'
 import InterfaceProvider from '@/resources/interface_provider'
 
 export default {
   name: 'Dashboard',
   components: {
     Navbar,
-    R124
+    SW3650,
+    SW3850,
+    SW365048TS
   },
   data () {
     return {
       device: '',
       intInfo: [],
       detailPort: {},
-      flag: false
+      flag: false,
+      viewDevice: 'sw3650'
     }
   },
   created () {
@@ -198,9 +203,12 @@ export default {
     }, 300000)
   },
   methods: {
-    showDetail () {
+    showDetail (deviceType) {
       // this.detailPort = item
-      this.$refs.form.setShowDetail()
+      if (this.flag) {
+        this.viewDevice = deviceType
+        this.$refs.form.setShowDetail()
+      }
     },
     async getInterface (deviceName) {
       this.device = deviceName
@@ -208,7 +216,7 @@ export default {
       if (res) {
         this.flag = true
       }
-      this.intInfo = res.data.filter(item => item.interface.match('GigabitEthernet'))
+      this.intInfo = res.data.filter(item => item.interface.match('GigabitEthernet'))  
       const index = 0
       this.detailPort = this.intInfo[index]
     }
