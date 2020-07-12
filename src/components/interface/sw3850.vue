@@ -190,26 +190,26 @@
                                                 </button>
                                             </span>
                                         </td>
-                                        <td id="gig1-1-3">
-                                            <span v-if="interfaceInfo[15].status == 'up'">
-                                                <button @click="showDetail(15)">
+                                        <td id="ten1-1-3">
+                                            <span v-if="interfaceInfo[19].status == 'up'">
+                                                <button @click="showDetail(19)">
                                                     <img src="@/assets/img/status/below-up.jpg">
                                                 </button>
                                             </span>
-                                            <span v-else-if="interfaceInfo[15].status == 'down'">
-                                                <button @click="showDetail(15)">
+                                            <span v-else-if="interfaceInfo[19].status == 'down'">
+                                                <button @click="showDetail(19)">
                                                     <img src="@/assets/img/status/below-down.jpg">
                                                 </button>
                                             </span>
                                         </td>
-                                        <td id="gig1-1-4">
-                                            <span v-if="interfaceInfo[16].status == 'up'">
-                                                <button @click="showDetail(16)">
+                                        <td id="ten1-1-4">
+                                            <span v-if="interfaceInfo[20].status == 'up'">
+                                                <button @click="showDetail(20)">
                                                     <img src="@/assets/img/status/below-up.jpg">
                                                 </button>
                                             </span>
-                                            <span v-else-if="interfaceInfo[16].status == 'down'">
-                                                <button @click="showDetail(16)">
+                                            <span v-else-if="interfaceInfo[20].status == 'down'">
+                                                <button @click="showDetail(20)">
                                                     <img src="@/assets/img/status/below-down.jpg">
                                                 </button>
                                             </span>
@@ -484,6 +484,16 @@ export default {
     border-radius: 3px;
 }
 #gig1-1-4 img {
+    width: 40px;
+    height: 29px;
+    border-radius: 3px;
+}
+#ten1-1-3 img {
+    width: 40px;
+    height: 29px;
+    border-radius: 3px;
+}
+#ten1-1-4 img {
     width: 40px;
     height: 29px;
     border-radius: 3px;

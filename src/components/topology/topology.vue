@@ -90,8 +90,55 @@
 </template>
 
 <script>
-export default {
+import InterfaceProvider from '@/resources/interface_provider'
 
+export default {
+    data () {
+        return {
+            intInfo: [],
+
+            // R101C
+            r101c_Ten_1_1_4: '',
+            r101c_Gi_1_0_24: '',
+
+            // R124
+            r124_Ten_1_1_3: '',
+            r124_Gi_1_1_1: ''
+        }
+    },
+    created () {
+        this.getDiagram()
+
+        setInterval(() => {
+            this.getDiagram()
+        }, 300000)
+    },
+    methods: {
+        async getDiagram() {
+            const res = await InterfaceProvider.fetchInterface('diagram')
+            
+            this.getStatusR101C(res.data.r101c)
+            this.getStatusR124(res.data.r124)
+        },
+        getStatusR101C(data) {
+            let infoTen1_1_4 = data.find(data => data.interfaceName == "TenGigabitEthernet1/1/4")
+            this.r101c_Ten_1_1_4 = infoTen1_1_4.status
+
+            let infoGi1_0_24 = data.find(data => data.interfaceName == "GigabitEthernet1/0/24")
+            this.r101c_Gi_1_0_24 = infoGi1_0_24.status
+
+            console.log("R101C: ", "TenGigabitEthernet1/1/4 => ", this.r101c_Ten_1_1_4, "GigabitEthernet1/0/24 => ", this.r101c_Gi_1_0_24)
+        },
+        getStatusR124(data) {
+            let infoTen_1_1_3 = data.find(data => data.interfaceName == "TenGigabitEthernet1/1/3")
+            this.r124_Ten_1_1_3 = infoTen_1_1_3.status
+
+            let infoGi_1_1_1 = data.find(data => data.interfaceName == "GigabitEthernet1/1/1")
+            this.r124_Gi_1_1_1 = infoGi_1_1_1.status
+
+            console.log("R101C: ", "TenGigabitEthernet1/1/3 => ", this.r124_Ten_1_1_3, "GigabitEthernet1/1/1 => ", this.r124_Gi_1_1_1)
+        }
+    }
 }
 </script>
 
