@@ -11,7 +11,7 @@
             color="#039BE5"
             class="white--text mx-10"
             @click="getTraffic() , celarData()">
-            Now
+            All
           </v-btn>
           <v-btn
             width="100"
@@ -33,6 +33,13 @@
             class="white--text mx-10"
             @click="getTrafficType('month'), celarData()">
             Month
+          </v-btn>
+          <v-btn
+            width="100"
+            color="#039BE5"
+            class="white--text mx-10"
+            @click="getTrafficType('year'), celarData()">
+            Year
           </v-btn>
         </div>
         <v-row>
