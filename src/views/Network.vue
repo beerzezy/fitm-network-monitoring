@@ -1,11 +1,17 @@
 <template>
   <div>
     <header>
-      <Navbar />
+      <Navbar/>
     </header>
-    <div class="network-container">
-      <Topology/>
-    </div>
+   
+    <v-container style="text-align:center;margin-top:60px;">
+      <div class="select-device mag-b-40">
+      </div>
+
+      <div class="bg-ct pad-chart" style="">
+        <Topology/>
+      </div>
+    </v-container> 
   </div>
 </template>
 
