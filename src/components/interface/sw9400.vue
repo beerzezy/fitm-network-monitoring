@@ -1,0 +1,257 @@
+<template>
+    <div>
+        <p class="title">Interface : xxxx </p>
+        <div class="container">
+            <div class="row">
+                <div class="col left">
+                    <table style="width:1400px;margin-top:11px;">
+                        <tr>
+                            <td style="width:598px"></td>
+                            <td style="width:260px">
+                                <table id="r124">
+                                    <tr>
+                                        <td id="gig01">
+                                            <span v-if="true">
+                                                <button @click="getInterface('r124')">
+                                                    <img src="@/assets/img/status/top-up.jpg">
+                                                </button>
+                                            </span>
+                                            <span v-else-if="false">
+                                                <button @click="getInterface('r124')">
+                                                    <img src="@/assets/img/status/top-down.jpg">
+                                                </button>
+                                            </span>
+                                        </td>
+                                        <td id="gig03"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig05"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig07"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig09"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig11"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="gig02"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig04"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig06"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig08"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig10"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig12"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table id="r124">
+                                    <tr>
+                                        <td id="gig13"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig15"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig17"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig19"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig21"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig23"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="gig14"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig16"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig18"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig20"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig22"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig24"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width:240px;">
+                                <table id="r124" style="margin-top:38px;">
+                                    <tr>
+                                        <td id="gig1-1-1"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="gig1-1-2"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="ten1-1-3"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                        <td id="ten1-1-4"><button><img src="@/assets/img/status/top-up.jpg"></button></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    data () {
+        return {
+            msg: 'test'
+        }
+    },
+    methods: {
+        getInterface (interfave) {
+            alert(interfave)
+        }
+    }
+}
+</script>
+
+<style scoped>
+.container {
+    width: 1432px;
+    height: 500px;
+    margin-top: 10px;
+    /* border: 1px solid #ddd; */
+    background-image: url("../../assets/img/device/sw9400.jpg");
+}
+
+.title {
+    font-size: 50px;
+    color: #fff;
+    text-align: left;
+}
+
+.box {
+    width: 1432px;
+    height: 500px;
+    /* border: 1px solid #ddd; */
+    background-image: url("../../assets/img/device/sw9400.jpg");
+}
+
+#gig01 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig03 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig05 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig07 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig09 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig11 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig13 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+
+#gig15 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig17 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig19 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig21 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig23 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig02 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig04 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig06 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig08 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig10 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig12 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig14 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig16 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig18 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig20 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig22 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig24 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig1-1-1 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#gig1-1-2 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#ten1-1-3 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+#ten1-1-4 img {
+    width: 40px;
+    height: 32px;
+    border-radius: 3px;
+}
+</style>

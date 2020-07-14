@@ -3,6 +3,7 @@
         <p class="title">Interface : {{deviceName.toUpperCase()}} </p>
         <div class="container">
             <div class="row"> 
+                
                 <div class="col left">
                     <table style="width:1400px;margin-top:24px;">
                         <tr>
@@ -110,7 +111,7 @@
                                     <tr>
                                         <td id="gig02">
                                             <span v-if="interfaceInfo[11].status == 'up'">
-                                                <button @click="showDetail(12)">
+                                                <button @click="showDetail(11)">
                                                     <img src="@/assets/img/status/below-up.jpg">
                                                 </button>
                                             </span>

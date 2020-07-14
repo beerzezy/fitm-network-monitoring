@@ -143,9 +143,13 @@ export default {
     created () {
         this.getDiagram()
 
+        // setInterval(() => {
+        //     this.getDiagram()
+        // }, 300000)
+
         setInterval(() => {
             this.getDiagram()
-        }, 300000)
+        }, 2000)
     },
     methods: {
         async getDiagram() {
