@@ -50,7 +50,7 @@
             </div>
 
             <!-- ******** RSAD->SW9400 ******** -->       
-            <div v-if="sw9400_Ten_3_0_6 == 'down'" class="rsad-line1-status">
+            <div v-if="sw9400_Ten_3_0_6 == 'down' || rsad_Gi_26 == 'down'" class="rsad-line1-status">
                 <div class="rsad-line1-down"></div>
                 <div class="rsad-line2-down"></div>
                 <div class="rsad-line3-down"></div>
@@ -138,6 +138,9 @@ export default {
             // RSHOP
             rshop_Ten_1_1_3: '',
             rshop_Ten_1_1_4: '',
+
+            // RSAD
+            rsad_Gi_26: ''
         }
     },
     created () {
@@ -162,6 +165,13 @@ export default {
             this.getStatusR415(res.data.r415)
             this.getStatusSW9400(res.data.sw9400)
             this.getStatusRSHOP(res.data.rshop)
+            this.getStatusRSAD(res.data.rsad)
+        },
+        getStatusRSAD(data) {
+            let infoGi_26 = data.find(data => data.interfaceName == "GigabitEthernet26")
+            this.rsad_Gi_26 = infoGi_26.status
+
+            //console.log("RSAD:", "GigabitEthernet26 =>", this.rsad_Gi_26)
         },
         getStatusR101C(data) {
             let infoTen1_1_4 = data.find(data => data.interfaceName == "TenGigabitEthernet1/1/4")
