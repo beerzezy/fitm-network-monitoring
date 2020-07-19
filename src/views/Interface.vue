@@ -59,16 +59,17 @@
           width="100"
           color="#039BE5"
           class="white--text"
-          @click="getInterface('rsad')">
+          @click="getInterface('rsad'), showDetail('sg220')">
           RSAD
         </v-btn>
       
       </div>
-      <div class="bg-ct pad-chart" style="height: 624px;">
+      <div class="bg-ct pad-chart" >
         <SW3650 v-if="flag == true && viewDevice == 'sw3650'" :interfaceInfo="intInfo" :deviceName="device" ref="form"/>
         <SW3850 v-if="flag == true && viewDevice == 'sw3850'" :interfaceInfo="intInfo" :deviceName="device" ref="form"/>
         <SW365048TS v-if="flag == true && viewDevice == 'sw365048TS'" :interfaceInfo="intInfo" :deviceName="device" ref="form"/>
         <SW9400 v-if="flag == true && viewDevice == 'sw9400'" :interfaceInfo="intInfo" :deviceName="device" ref="form"/>
+        <SG220 v-if="flag == true && viewDevice == 'sg220'" :interfaceInfo="intInfo" :deviceName="device" ref="form"/>
         <!-- <div class="port-info mt-10" style="margin:auto;">
           <p class="port-title">
             {{ detailPort.interface }}
@@ -177,6 +178,7 @@ import Navbar from '@/components/Navbar.vue'
 import SW3650 from '@/components/interface/sw3650.vue'
 import SW3850 from '@/components/interface/sw3850.vue'
 import SW9400 from '@/components/interface/sw9400.vue'
+import SG220 from '@/components/interface/sg220.vue'
 import SW365048TS from '@/components/interface/sw365048ts.vue'
 import InterfaceProvider from '@/resources/interface_provider'
 
@@ -187,7 +189,8 @@ export default {
     SW3650,
     SW3850,
     SW365048TS,
-    SW9400
+    SW9400,
+    SG220
   },
   data () {
     return {
