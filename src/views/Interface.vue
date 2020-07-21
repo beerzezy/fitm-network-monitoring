@@ -198,7 +198,17 @@ export default {
       intInfo: [],
       detailPort: {},
       flag: false,
-      viewDevice: 'sw3650'
+      viewDevice: 'sw3650',
+      deviceInfos: [
+        {deviceName: 'r124', deviceIp: '10.99.4.1'},
+        {deviceName: 'r330a', deviceIp: '10.99.6.1'},
+        {deviceName: 'r101c', deviceIp: '10.99.3.1'},
+        {deviceName: 'r415', deviceIp: '10.99.2.1'},
+        {deviceName: 'rshop', deviceIp: '10.99.7.1'},
+        {deviceName: 'sw9400', deviceIp: '10.99.1.1'},
+        {deviceName: 'sw3850', deviceIp: '10.99.5.1'},
+        {deviceName: 'rsad', deviceIp: '10.61.4.49'}
+      ]
     }
   },
   created () {
