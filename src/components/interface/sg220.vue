@@ -423,7 +423,7 @@ export default {
             });
         },
         shutDownPort() {
-            let deviceIp = this.$parent.deviceInfos.find(deviceInfo => deviceInfo.deviceName == this.deviceName)
+            let deviceIp = this.$parent.deviceInfos.find(deviceInfo => deviceInfo.deviceName == this.deviceName).deviceIp
             axios.post('http://localhost:9000/device/shutdown', {
                 deviceIp: deviceIp,
                 oid: this.detailPort.oidAdminStatus
