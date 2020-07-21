@@ -391,6 +391,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     props: ['interfaceInfo', 'deviceName'],
     data () {
@@ -419,6 +421,7 @@ export default {
             console.log('shutPort')
         },
         validateShowPort () {
+            
             swal({
                 content: {
                     element: "input",
@@ -430,6 +433,7 @@ export default {
             })
             .then((value) => {
                 if (value == 'admin') {
+                    this.shutDownPort()
                     swal('', 'Success', 'success', {
                         buttons: false,
                         timer: 1000
@@ -439,6 +443,19 @@ export default {
                         icon: 'error'
                     })
                 }
+            });
+        },
+        shutDownPort() {
+            let deviceIp = this.$parent.deviceInfos.find(deviceInfo => deviceInfo.deviceName == this.deviceName)
+            axios.post('http://localhost:9000/device/shutdown', {
+                deviceIp: deviceIp,
+                oid: this.detailPort.oidAdminStatus
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
             });
         }
     }
