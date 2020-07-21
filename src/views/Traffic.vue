@@ -10,8 +10,8 @@
             width="100"
             color="#039BE5"
             class="white--text mx-10"
-            @click="getTraffic() , celarData()">
-            All
+            @click="getTrafficPickerView()">
+            PickDate
           </v-btn>
           <v-btn
             width="100"
@@ -42,6 +42,16 @@
             Year
           </v-btn>
         </div>
+          <v-row justify="space-around" v-if="isView" >
+            <v-date-picker v-model="picker" color="green lighten-1"></v-date-picker>
+          </v-row>
+          <v-btn v-if="isView"
+            width="100"
+            color="#039BE5"
+            class="white--text mx-10"
+            @click="getTrafficPick(), celarData ()">
+            Ok
+          </v-btn>
         <v-row>
           <v-col cols="6">
             <div class="bg-ct">
@@ -210,6 +220,8 @@ export default {
   },
   data () {
     return {
+      isView: false,
+      picker: new Date().toISOString().substr(0, 10),
       device: [
         'r124',
         'r330a',
@@ -274,7 +286,9 @@ export default {
     this.loading = false
     setInterval(() => {
       this.loading = true
-      if (this.timeType === 'now') {
+      if (this.timeType === 'pick') {
+        this.getTrafficPick()
+      } else if (this.timeType === 'now') {
         this.getTraffic(this.device[0])
         this.getTraffic(this.device[1])
         this.getTraffic(this.device[2])
@@ -290,6 +304,42 @@ export default {
     }, 60000)
   },
   methods: {
+    getTrafficPickerView (deviceName) {
+      this.isView = true
+    },
+    async getTrafficPick () {
+      this.isView = false
+      this.timeType = "pick"
+      const dateTime = this.$moment().format('YYYY-MM-DD')
+
+      const stTime = `${this.picker} 00:00`
+      const edTime = `${dateTime} 23:59`
+
+      if (stTime > edTime) {
+        console.log("(stTime > edTime)")
+      }
+
+      const stFormat = this.$moment(stTime).format('x')
+      const edFormat = this.$moment(edTime).format('x')
+
+      const resR124 = await TrafficProvider.fetchTrafficPick('r124', stFormat.substr(0, 10), edFormat.substr(0, 10))
+      const resR330A = await TrafficProvider.fetchTrafficPick('r330a', stFormat.substr(0, 10), edFormat.substr(0, 10))
+      const resR101C = await TrafficProvider.fetchTrafficPick('r101c', stFormat.substr(0, 10), edFormat.substr(0, 10))
+      const resR415 = await TrafficProvider.fetchTrafficPick('r415', stFormat.substr(0, 10), edFormat.substr(0, 10))
+      const resRSHOP = await TrafficProvider.fetchTrafficPick('rshop', stFormat.substr(0, 10), edFormat.substr(0, 10))
+      const resSW4503 = await TrafficProvider.fetchTrafficPick('sw4503', stFormat.substr(0, 10), edFormat.substr(0, 10))
+      const resSW3850 = await TrafficProvider.fetchTrafficPick('sw3850', stFormat.substr(0, 10), edFormat.substr(0, 10))
+      const resRSAD = await TrafficProvider.fetchTrafficPick('rsad', stFormat.substr(0, 10), edFormat.substr(0, 10))
+
+      this.r124Data.rows = resR124.data
+      this.r330aData.rows = resR330A.data
+      this.r101cData.rows = resR101C.data
+      this.r415Data.rows = resR415.data
+      this.rshopData.rows = resRSHOP.data
+      this.sw4503Data.rows = resSW4503.data
+      this.sw3850Data.rows = resSW3850.data
+      this.rsadData.rows = resRSAD.data
+    },
     async getTraffic (deviceName) {
       const dateTime = this.$moment().format('YYYY-MM-DD')
       const stTime = `${dateTime} 00:00`
@@ -299,7 +349,7 @@ export default {
       const edFormat = this.$moment(edTime).format('x')
 
       const res = await TrafficProvider.fetchTraffic(
-        deviceName, stFormat.substr(0, 10), edFormat.substr(0, 10)
+        deviceName
       )
       if (res && deviceName === 'r124') {
         this.r124Data.rows = res.data

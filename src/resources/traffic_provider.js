@@ -1,8 +1,13 @@
 import HttpRequest from './http_request'
 
 class TrafficProvider extends HttpRequest {
-  async fetchTraffic (deviceName, start, end) {
+  async fetchTrafficPick (deviceName, start, end) {
     const data = this.fetch(`/traffic/${deviceName}?startAt=${start}&endAt=${end}`)
+    return data
+  }
+
+  async fetchTraffic (deviceName) {
+    const data = this.fetch(`/traffic/home/${deviceName}`)
     return data
   }
 
