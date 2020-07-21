@@ -200,13 +200,13 @@ export default {
       flag: false,
       viewDevice: 'sw3650',
       deviceInfos: [
-        {deviceName: 'r124', deviceIp: '10.77.1.2'},
-        {deviceName: 'r330a', deviceIp: '10.77.3.2'},
-        {deviceName: 'r101c', deviceIp: '10.77.7.2'},
-        {deviceName: 'r415', deviceIp: '10.77.5.2'},
-        {deviceName: 'rshop', deviceIp: '10.77.8.2'},
-        {deviceName: 'sw4503', deviceIp: '10.9.99.2'},
-        {deviceName: 'sw3850', deviceIp: '10.77.4.2'},
+        {deviceName: 'r124', deviceIp: '10.99.4.1'},
+        {deviceName: 'r330a', deviceIp: '10.99.6.1'},
+        {deviceName: 'r101c', deviceIp: '10.99.3.1'},
+        {deviceName: 'r415', deviceIp: '10.99.2.1'},
+        {deviceName: 'rshop', deviceIp: '10.99.7.1'},
+        {deviceName: 'sw9400', deviceIp: '10.99.1.1'},
+        {deviceName: 'sw3850', deviceIp: '10.99.5.1'},
         {deviceName: 'rsad', deviceIp: '10.61.4.49'}
       ]
     }
