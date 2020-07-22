@@ -8,7 +8,7 @@
         <div class="custom-time mb-5">
           <v-btn
             width="100"
-            color="#039BE5"
+            color="red lighten-2"
             class="white--text mx-10"
             @click="getTrafficPickerView()">
             PickDate
@@ -45,19 +45,32 @@
           <v-row justify="space-around" v-if="isView" >
             <v-date-picker v-model="picker" color="green lighten-1"></v-date-picker>
           </v-row>
-          <v-btn v-if="isView"
-            width="100"
-            color="#039BE5"
-            class="white--text mx-10"
-            @click="getTrafficPick(), celarData ()">
-            Ok
-          </v-btn>
+          <v-row align-v="center" justify="center">
+             <v-col></v-col>
+              <v-col>
+                <v-btn v-if="isView"
+                width="100"
+                color="green lighten-2"
+                class="white--text mx-10"
+                @click="getTrafficPick(), celarData ()">
+                Ok
+              </v-btn>
+              <v-btn v-if="isView" 
+                width="100"
+                color="black lighten-2"
+                class="white--text mx-10"
+                @click="isView=false">
+                Cancel
+              </v-btn>
+            </v-col>
+            
+          </v-row>
         <v-row>
           <v-col cols="6">
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[0] }} </span>
+                  Traffic <span> {{ device[0] }} </span> (MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -69,13 +82,14 @@
                   </ve-line>
                 </div>
               </div>
+
             </div>
           </v-col>
           <v-col cols="6">
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[1] }} </span>
+                  Traffic <span> {{ device[1] }} </span> (MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -95,7 +109,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[2] }} </span>
+                  Traffic <span> {{ device[2] }} </span> (MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -113,7 +127,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[3] }} </span>
+                  Traffic <span> {{ device[3] }} </span> (MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -133,7 +147,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[4] }} </span>
+                  Traffic <span> {{ device[4] }} </span> (MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -151,7 +165,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[5] }} </span>
+                  Traffic <span> {{ device[5] }} </span> (MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -171,7 +185,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[6] }} </span>
+                  Traffic <span> {{ device[6] }} </span> (MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -189,7 +203,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[7] }} </span>
+                  Traffic <span> {{ device[7] }} </span> (MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -220,6 +234,7 @@ export default {
   },
   data () {
     return {
+      dialog: false,
       isView: false,
       picker: new Date().toISOString().substr(0, 10),
       device: [
@@ -307,18 +322,29 @@ export default {
     getTrafficPickerView (deviceName) {
       this.isView = true
     },
+    alertStartGreaterThanEndTime() {
+      this.$alert("Start Time More Than End Time").then(() =>
+        console.log("Closed")
+      );
+    },
+    confirmExample1() {
+      this.$confirm("This is cool confirm.", "Confirm");
+    },
     async getTrafficPick () {
-      this.isView = false
-      this.timeType = "pick"
+     
       const dateTime = this.$moment().format('YYYY-MM-DD')
 
       const stTime = `${this.picker} 00:00`
       const edTime = `${dateTime} 23:59`
 
       if (stTime > edTime) {
+        this.alertStartGreaterThanEndTime()
         console.log("(stTime > edTime)")
+      } else {
+        this.isView = false
+        this.timeType = "pick"
       }
-
+     
       const stFormat = this.$moment(stTime).format('x')
       const edFormat = this.$moment(edTime).format('x')
 

@@ -17,11 +17,14 @@ import '@/assets/css/main.css'
 
 import App from './App.vue'
 
+import VueSimpleAlert from "vue-simple-alert"
+
 // import 'bootstrap/dist/css/bootstrap.css'
 // import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.config.productionTip = false
 
+Vue.use(VueSimpleAlert);
 Vue.use(VCharts)
 Vue.use(moment)
 
