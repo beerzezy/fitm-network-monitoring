@@ -43,11 +43,31 @@
           </v-btn>
         </div>
           <v-row justify="space-around" v-if="isView" >
-            <v-date-picker v-model="picker" color="green lighten-1"></v-date-picker>
+            <div class="data-picker">
+              <v-row justify="center" style="text-align:center;margin-top:40px;">
+                <v-date-picker v-model="picker" color="green lighten-1"></v-date-picker>
+              </v-row>
+              <v-row justify="center" style="margin-top:20px;">
+                <v-btn v-if="isView"
+                  width="100"
+                  color="green lighten-2"
+                  class="white--text mx-4"
+                  @click="getTrafficPick(), celarData ()">
+                  Ok
+                </v-btn>
+
+                <v-btn v-if="isView"
+                  width="100"
+                  color="black lighten-2"
+                  class="white--text mx-4"
+                  @click="isView=false">
+                  Cancel
+                </v-btn>
+              </v-row>
+            </div>
           </v-row>
-          <v-row align-v="center" justify="center">
-             <v-col></v-col>
-              <v-col>
+          <v-row  justify="center" style="text-align:center">
+            <!-- <v-col>
                 <v-btn v-if="isView"
                 width="100"
                 color="green lighten-2"
@@ -55,14 +75,24 @@
                 @click="getTrafficPick(), celarData ()">
                 Ok
               </v-btn>
+             </v-col> -->
+             <v-col> 
+              <!-- <v-btn v-if="isView"
+                width="100"
+                color="green lighten-2"
+                class="white--text mx-10"
+                @click="getTrafficPick(), celarData ()">
+                Ok
+              </v-btn>
+
               <v-btn v-if="isView" 
                 width="100"
                 color="black lighten-2"
                 class="white--text mx-10"
                 @click="isView=false">
                 Cancel
-              </v-btn>
-            </v-col>
+              </v-btn> -->
+             </v-col>
             
           </v-row>
         <v-row>
