@@ -375,8 +375,11 @@
           <p class="port-title">
             {{detailPort.interface}}
             <span style="float:right;">
-                <button @click="validateShowPort()" title="Shut Down Port" class="button button1">
-                    <img src="@/assets/img/icon/icons-shutdown.png" style="width:35px;height:35px;">
+                <button v-if="detailPort.status == 'up'" @click="validateShowPort(detailPort.status)" title="Shut Down Port" class="button button1">
+                    <img src="@/assets/img/icon/icons-shutdown.png" style="width:35px;height:35px;"> 
+                </button>
+                <button v-if="detailPort.status == 'down'" @click="validateShowPort(detailPort.status)" title="Start Port" class="button button1">
+                    <img src="@/assets/img/icon/icons-up.png" style="width:35px;height:35px;"> 
                 </button>
             </span>
           </p>
@@ -399,7 +402,8 @@ export default {
         return {
             detailPort: '',
             flagShowDetail: false,
-            isView: false
+            isView: false,
+            indexShutPort: ''
         }
     },
     created () {
@@ -410,6 +414,7 @@ export default {
         showDetail (index) {
             this.flagShowDetail = true
             this.detailPort = this.interfaceInfo[index]
+            this.indexShutPort = index
         },
         setDefalutDetailPort () {
             this.detailPort = this.interfaceInfo[0]
@@ -420,7 +425,7 @@ export default {
         shutPort () {
             console.log('shutPort')
         },
-        validateShowPort () {
+        validateShowPort (status) {
             
             swal({
                 content: {
@@ -433,7 +438,11 @@ export default {
             })
             .then((value) => {
                 if (value == 'admin') {
-                    this.shutDownPort()
+                    if (status == 'up') {
+                        this.shutDownPort()
+                    } else if (status == 'down') {
+                        this.startPort()
+                    }
                     swal('', 'Success', 'success', {
                         buttons: false,
                         timer: 1000
@@ -457,6 +466,23 @@ export default {
             .catch(function (error) {
                 console.log(error);
             });
+
+            this.interfaceInfo[this.indexShutPort].status = 'down'
+        },
+        startPort() {
+            let deviceIp = this.$parent.deviceInfos.find(deviceInfo => deviceInfo.deviceName == this.deviceName).deviceIp
+            axios.post('http://localhost:9000/device/start', {
+                deviceIp: deviceIp,
+                oid: this.detailPort.oidAdminStatus
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+            this.interfaceInfo[this.indexShutPort].status = 'up'
         }
     }
 } 
