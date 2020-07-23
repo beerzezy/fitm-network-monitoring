@@ -169,7 +169,7 @@
                 </div>
                 <div class="bg-chart">
                   <ve-line
-                    :data="sw4503Data"
+                    :data="sw9400Data"
                     :settings="chartSettings"
                     :colors="colors"
                     :loading="loading"
@@ -243,7 +243,7 @@ export default {
         'r101c',
         'r415',
         'rshop',
-        'sw4503',
+        'sw9400',
         'sw3850',
         'rsad'
       ],
@@ -273,7 +273,7 @@ export default {
         columns: ['inbound', 'outbound'],
         rows: []
       },
-      sw4503Data: {
+      sw9400Data: {
         columns: ['inbound', 'outbound'],
         rows: []
       },
@@ -353,7 +353,7 @@ export default {
       const resR101C = await TrafficProvider.fetchTrafficPick('r101c', stFormat.substr(0, 10), edFormat.substr(0, 10))
       const resR415 = await TrafficProvider.fetchTrafficPick('r415', stFormat.substr(0, 10), edFormat.substr(0, 10))
       const resRSHOP = await TrafficProvider.fetchTrafficPick('rshop', stFormat.substr(0, 10), edFormat.substr(0, 10))
-      const resSW4503 = await TrafficProvider.fetchTrafficPick('sw4503', stFormat.substr(0, 10), edFormat.substr(0, 10))
+      const ressw9400 = await TrafficProvider.fetchTrafficPick('sw9400', stFormat.substr(0, 10), edFormat.substr(0, 10))
       const resSW3850 = await TrafficProvider.fetchTrafficPick('sw3850', stFormat.substr(0, 10), edFormat.substr(0, 10))
       const resRSAD = await TrafficProvider.fetchTrafficPick('rsad', stFormat.substr(0, 10), edFormat.substr(0, 10))
 
@@ -362,7 +362,7 @@ export default {
       this.r101cData.rows = resR101C.data
       this.r415Data.rows = resR415.data
       this.rshopData.rows = resRSHOP.data
-      this.sw4503Data.rows = resSW4503.data
+      this.sw9400Data.rows = ressw9400.data
       this.sw3850Data.rows = resSW3850.data
       this.rsadData.rows = resRSAD.data
     },
@@ -387,8 +387,8 @@ export default {
         this.r415Data.rows = res.data
       } else if (res && deviceName === 'rshop') {
         this.rshopData.rows = res.data
-      } else if (res && deviceName === 'sw4503') {
-        this.sw4503Data.rows = res.data
+      } else if (res && deviceName === 'sw9400') {
+        this.sw9400Data.rows = res.data
       } else if (res && deviceName === 'sw3850') {
         this.sw3850Data.rows = res.data
       } else {
@@ -404,7 +404,7 @@ export default {
       const resR101C = await TrafficProvider.fetchTrafficType('r101c', this.timeType)
       const resR415 = await TrafficProvider.fetchTrafficType('r415', this.timeType)
       const resRSHOP = await TrafficProvider.fetchTrafficType('rshop', this.timeType)
-      const resSW4503 = await TrafficProvider.fetchTrafficType('sw4503', this.timeType)
+      const ressw9400 = await TrafficProvider.fetchTrafficType('sw9400', this.timeType)
       const resSW3850 = await TrafficProvider.fetchTrafficType('sw3850', this.timeType)
       const resRSAD = await TrafficProvider.fetchTrafficType('rsad', this.timeType)
 
@@ -413,7 +413,7 @@ export default {
       this.r101cData.rows = resR101C.data
       this.r415Data.rows = resR415.data
       this.rshopData.rows = resRSHOP.data
-      this.sw4503Data.rows = resSW4503.data
+      this.sw9400Data.rows = resSw9400.data
       this.sw3850Data.rows = resSW3850.data
       this.rsadData.rows = resRSAD.data
     },
@@ -424,7 +424,7 @@ export default {
       this.r101cData.rows = []
       this.r415Data.rows = []
       this.rshopData.rows = []
-      this.sw4503Data.rows = []
+      this.sw9400Data.rows = []
       this.sw3850Data.rows = []
       this.rsadData.rows = []
     } 
