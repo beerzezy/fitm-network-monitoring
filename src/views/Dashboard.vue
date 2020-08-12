@@ -41,7 +41,7 @@
                 <div class="pad-chart">
                   <v-row>
                     <div class="title-chart">
-                      <p>Top 10 Rank Traffic</p>
+                      <p>Top 10 Rank Vlan Traffic</p>
                     </div>
                     <v-spacer></v-spacer>
                     <v-btn
