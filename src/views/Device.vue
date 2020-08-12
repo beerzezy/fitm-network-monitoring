@@ -45,8 +45,8 @@
             width="100"
             color="#039BE5"
             class="white--text"
-            @click="getDeviceStatus('sw4503')">
-            SW4503
+            @click="getDeviceStatus('sw9400')">
+            SW9400
           </v-btn>
           <v-btn
             width="100"
@@ -66,7 +66,9 @@
         <div class="bg-ct">
           <div class="pad-chart">
             <div class="title-chart">
-              <p>Device Status <span> {{ device }} </span></p>
+              <p style="font-size:16px;">Device: <span style="font-size:16px;"> {{ device }} </span></p>
+              <p style="font-size:16px;">IP Address: <span style="font-size:16px;"> {{ deviceData.ip }} </span></p>
+              <p style="font-size:16px;">OS: <span style="font-size:16px;"> {{osStr}} </span></p>
             </div>
             <v-row>
               <v-col>
@@ -256,6 +258,7 @@ export default {
   },
   data () {
     return {
+      osStr: '',
       device: '',
       deviceData: [],
       chartSettings: {
@@ -313,9 +316,30 @@ export default {
     async getDeviceStatus (deviceName) {
       this.device = deviceName
       const response = await DeviceProvider.fetchDevice(deviceName)
+     
       if (response) {
         this.deviceData = response.data
+        this.osDisplay(this.deviceData.os, deviceName)
       }
+    },
+    osDisplay (data, deviceName) {
+      var os
+      if (deviceName == 'rsad') {
+        let arrayData = data.split(',')
+        let sliced = arrayData.slice(0, 2)
+        os = sliced.toString()
+      } else if (deviceName == 'sw3850') {
+        let replaceWorded = data.replace(/RELEASE/g, ",")
+        let arrayData = replaceWorded.split(',')
+        let sliced = arrayData.slice(0, 4)
+        os = sliced.toString()
+      } else {
+        let arrayData = data.split(',')
+        let sliced = arrayData.slice(0, 3)
+        os = sliced.toString()
+      }
+
+      this.osStr = os
     }
   }
 }
