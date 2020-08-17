@@ -359,8 +359,7 @@ export default {
     getShowTime() {
       var dateNow = new Date(Date.now());
       if (this.timeType == 'now') {
-        this.showType =  'Show All of The Day (Inbound / MB, Outbound / MB)'
-        this.showDate =  dateNow.toDateString()
+        this.showType =   dateNow.toDateString() + '  |  Show All of The Day (Inbound / MB, Outbound / MB)'
       } else if (this.timeType == 'hours') {
         this.showType =  dateNow.toDateString() + '  |  Show Minute By Hour (Inbound / MB, Outbound / MB)'
       } else if (this.timeType == 'days') {
@@ -370,7 +369,7 @@ export default {
       } else if (this.timeType == 'year') {
         this.showType =  dateNow.toDateString() + '  |  Show Average Month By Year (Inbound / MB, Outbound / MB)'
       } else if (this.timeType == 'pick') {
-        this.showType =  dateNow.toDateString()  + '    Show Average Days By Date Picked (Inbound / MB, Outbound / MB)'
+        this.showType =  dateNow.toDateString()  + '  |  Show Average Days By Date Picked (Inbound / MB, Outbound / MB)'
       }
     },
     alertStartGreaterThanEndTime() {

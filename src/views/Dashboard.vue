@@ -3,6 +3,9 @@
     <header>
       <Navbar />
     </header>
+  <div align='right'>
+      {{ showType }}
+  </div> 
     <div class="y-scroll">
       <div class="contain">
         <div class="mx-8">
@@ -210,7 +213,8 @@ export default {
       ringData: {
         columns: ['deviceName', 'speed'],
         rows: []
-      }
+      },
+      showType: dateNow.toDateString() +'Show All of The Day (Inbound / MB, Outbound / MB)'
     }
   },
   mounted () {
