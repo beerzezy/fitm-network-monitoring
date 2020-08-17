@@ -98,10 +98,10 @@
                         :key="index"
                         style="color: lightgrey;">
                         <td class="text-center">
-                          {{ index + 1 }}.
+                          {{ index + 1 }}
                         </td>
                         <td class="text-center">
-                          {{ item.interface }}
+                          {{ item.interface.replace("unrouted ", "") }}
                         </td>
                         <!-- <td>{{ }}</td> -->
                         <td class="text-center">
@@ -120,9 +120,6 @@
                           Name
                         </th>
                         <th class="text-center">
-                          Network
-                        </th>
-                        <th class="text-center">
                           Value (MB)
                         </th>
                       </tr>
@@ -134,7 +131,7 @@
                           {{ index + 1 }}.
                         </td>
                         <td class="text-center">
-                          {{ item.interface }}
+                          {{ item.interface.replace("unrouted ", "") }}
                         </td>
                         <td>{{ }}</td>
                         <td class="text-center">

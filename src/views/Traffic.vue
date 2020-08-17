@@ -93,8 +93,8 @@
                 @click="isView=false">
                 Cancel
               </v-btn> -->
-             </v-col>
-             {{ showType }}
+              </v-col>
+                {{ showType }}
           </v-row>
         <v-row>
           <v-col cols="6">
@@ -281,7 +281,7 @@ export default {
       ],
       loading: false,
       timeType: 'now',
-      showType: '',
+      showType: 'Show All of The Day (Inbound / MB, Outbound / MB)',
       chartSettings: {
         metrics: ['inbound', 'outbound'],
         dimension: ['timestamp']
@@ -331,6 +331,7 @@ export default {
     this.getTraffic(this.device[5])
     this.getTraffic(this.device[6])
     this.getTraffic(this.device[7])
+    getShowTime()
     this.loading = false
     setInterval(() => {
       this.loading = true
@@ -356,18 +357,20 @@ export default {
       this.isView = true
     },
     getShowTime() {
+      var dateNow = new Date(Date.now());
       if (this.timeType == 'now') {
-        this.showType = 'Show All of The Day (Inbound / MB, Outbound / MB)'
+        this.showType =  'Show All of The Day (Inbound / MB, Outbound / MB)'
+        this.showDate =  dateNow.toDateString()
       } else if (this.timeType == 'hours') {
-        this.showType = 'Show Minute By Hour (Inbound / MB, Outbound / MB)'
+        this.showType =  dateNow.toDateString() + '  |  Show Minute By Hour (Inbound / MB, Outbound / MB)'
       } else if (this.timeType == 'days') {
-        this.showType = 'Show Average Hour By Days (Inbound / MB, Outbound / MB)'
+        this.showType =  dateNow.toDateString() + '  |  Show Average Hour By Days (Inbound / MB, Outbound / MB)'
       } else if (this.timeType == 'month') {
-        this.showType = 'Show Average Day By Month (Inbound / MB, Outbound / MB)'
+        this.showType =  dateNow.toDateString() + '  |  Show Average Day By Month (Inbound / MB, Outbound / MB)'
       } else if (this.timeType == 'year') {
-        this.showType = 'Show Average Month By Year (Inbound / MB, Outbound / MB)'
+        this.showType =  dateNow.toDateString() + '  |  Show Average Month By Year (Inbound / MB, Outbound / MB)'
       } else if (this.timeType == 'pick') {
-        this.showType = 'Show Average Days By Date Picked (Inbound / MB, Outbound / MB)'
+        this.showType =  dateNow.toDateString()  + '    Show Average Days By Date Picked (Inbound / MB, Outbound / MB)'
       }
     },
     alertStartGreaterThanEndTime() {
