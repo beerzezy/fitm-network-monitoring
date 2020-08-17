@@ -331,7 +331,7 @@ export default {
     this.getTraffic(this.device[5])
     this.getTraffic(this.device[6])
     this.getTraffic(this.device[7])
-    getShowTime()
+    this.getShowTime()
     this.loading = false
     setInterval(() => {
       this.loading = true
