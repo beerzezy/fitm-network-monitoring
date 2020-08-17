@@ -10,49 +10,50 @@
             width="100"
             color="red lighten-2"
             class="white--text mx-10"
-            @click="getTrafficPickerView()">
+            @click="getTrafficPickerView(), getShowTime()">
             PickDate
           </v-btn>
           <v-btn
             width="100"
             color="#039BE5"
             class="white--text mx-10"
-            @click="getTrafficType('hours'), celarData()">
+            @click="getTrafficType('hours'), celarData(), getShowTime()">
             Hours
           </v-btn>
           <v-btn
             width="100"
             color="#039BE5"
             class="white--text mx-10"
-            @click="getTrafficType('days'), celarData()">
+            @click="getTrafficType('days'), celarData(), getShowTime()">
             Days
           </v-btn>
           <v-btn
             width="100"
             color="#039BE5"
             class="white--text mx-10"
-            @click="getTrafficType('month'), celarData()">
+            @click="getTrafficType('month'), celarData(), getShowTime()">
             Month
           </v-btn>
           <v-btn
             width="100"
             color="#039BE5"
             class="white--text mx-10"
-            @click="getTrafficType('year'), celarData()">
+            @click="getTrafficType('year'), celarData(), getShowTime()">
             Year
           </v-btn>
         </div>
           <v-row justify="space-around" v-if="isView" >
             <div class="data-picker">
               <v-row justify="center" style="text-align:center;margin-top:40px;">
-                <v-date-picker v-model="picker" color="green lighten-1"></v-date-picker>
+                <v-date-picker v-model="pickerStart" color="green lighten-1"></v-date-picker>
+                <v-date-picker v-model="pickerEnd" color="red lighten-1"></v-date-picker>
               </v-row>
               <v-row justify="center" style="margin-top:20px;">
                 <v-btn v-if="isView"
                   width="100"
                   color="green lighten-2"
                   class="white--text mx-4"
-                  @click="getTrafficPick(), celarData ()">
+                  @click="getTrafficPick(), celarData (), getShowTime()">
                   Ok
                 </v-btn>
 
@@ -93,14 +94,14 @@
                 Cancel
               </v-btn> -->
              </v-col>
-            
+             {{ showType }}
           </v-row>
         <v-row>
           <v-col cols="6">
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[0] }} </span> (MB)
+                  Traffic <span> {{ device[0] }} </span>  
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -119,7 +120,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[1] }} </span> (MB)
+                  Traffic <span> {{ device[1] }} </span> 
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -139,7 +140,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[2] }} </span> (MB)
+                  Traffic <span> {{ device[2] }} </span>
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -157,7 +158,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[3] }} </span> (MB)
+                  Traffic <span> {{ device[3] }} </span>
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -177,7 +178,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[4] }} </span> (MB)
+                  Traffic <span> {{ device[4] }} </span>
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -195,7 +196,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[5] }} </span> (MB)
+                  Traffic <span> {{ device[5] }} </span>
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -215,7 +216,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[6] }} </span> (MB)
+                  Traffic <span> {{ device[6] }} </span>
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -233,7 +234,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[7] }} </span> (MB)
+                  Traffic <span> {{ device[7] }} </span> 
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -266,7 +267,8 @@ export default {
     return {
       dialog: false,
       isView: false,
-      picker: new Date().toISOString().substr(0, 10),
+      pickerStart: new Date().toISOString().substr(0, 10),
+      pickerEnd: new Date().toISOString().substr(0, 10),
       device: [
         'r124',
         'r330a',
@@ -279,6 +281,7 @@ export default {
       ],
       loading: false,
       timeType: 'now',
+      showType: '',
       chartSettings: {
         metrics: ['inbound', 'outbound'],
         dimension: ['timestamp']
@@ -352,6 +355,21 @@ export default {
     getTrafficPickerView (deviceName) {
       this.isView = true
     },
+    getShowTime() {
+      if (this.timeType == 'now') {
+        this.showType = 'Show All of The Day (Inbound / MB, Outbound / MB)'
+      } else if (this.timeType == 'hours') {
+        this.showType = 'Show Minute By Hour (Inbound / MB, Outbound / MB)'
+      } else if (this.timeType == 'days') {
+        this.showType = 'Show Average Hour By Days (Inbound / MB, Outbound / MB)'
+      } else if (this.timeType == 'month') {
+        this.showType = 'Show Average Day By Month (Inbound / MB, Outbound / MB)'
+      } else if (this.timeType == 'year') {
+        this.showType = 'Show Average Month By Year (Inbound / MB, Outbound / MB)'
+      } else if (this.timeType == 'pick') {
+        this.showType = 'Show Average Days By Date Picked (Inbound / MB, Outbound / MB)'
+      }
+    },
     alertStartGreaterThanEndTime() {
       this.$alert("Start Time More Than End Time").then(() =>
         console.log("Closed")
@@ -364,8 +382,8 @@ export default {
      
       const dateTime = this.$moment().format('YYYY-MM-DD')
 
-      const stTime = `${this.picker} 00:00`
-      const edTime = `${dateTime} 23:59`
+      const stTime = `${this.pickerStart} 00:00`
+      const edTime = `${this.pickerEnd} 23:59`
 
       if (stTime > edTime) {
         this.alertStartGreaterThanEndTime()
