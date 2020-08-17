@@ -214,7 +214,7 @@ export default {
         columns: ['deviceName', 'speed'],
         rows: []
       },
-      showType: dateNow.toDateString() +'Show All of The Day (Inbound / MB, Outbound / MB)'
+      // showType: dateNow.toDateString() +'Show All of The Day (Inbound / MB, Outbound / MB)'
     }
   },
   mounted () {
