@@ -45,8 +45,8 @@
           <v-row justify="space-around" v-if="isView" >
             <div class="data-picker">
               <v-row justify="center" style="text-align:center;margin-top:40px;">
-                <v-date-picker v-model="pickerStart" color="green lighten-1"></v-date-picker>
-                <v-date-picker v-model="pickerEnd" color="red lighten-1"></v-date-picker>
+                <v-date-picker class="white--text mx-4" v-model="pickerStart" color="green lighten-1"></v-date-picker>
+                <v-date-picker class="white--text mx-4" v-model="pickerEnd" color="red lighten-1"></v-date-picker>
               </v-row>
               <v-row justify="center" style="margin-top:20px;">
                 <v-btn v-if="isView"
