@@ -136,7 +136,6 @@
                         <td class="text-center">
                           {{ item.interface.replace("unrouted ", "") }}
                         </td>
-                        <td>{{ }}</td>
                         <td class="text-center">
                           {{ item.outbound }}
                         </td>
