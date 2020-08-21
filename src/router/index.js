@@ -33,6 +33,11 @@ const routes = [
     path: '/network',
     name: 'network',
     component: () => import('../views/Network.vue')
+  },
+  {
+    path: '/manageuser',
+    name: 'manageuser',
+    component: () => import('../views/Manageuser.vue')
   }
 ]
 

@@ -42,11 +42,32 @@
           color="white">
           Network
         </v-btn>
-        <v-btn @click="logout()"
+        <!-- <v-btn @click="logout()" -->
+        <!-- <v-btn
           text
           color="white">
-          Logout
-        </v-btn>
+          Profile
+        </v-btn> -->
+        <div class="text-center" style="margin-top:12px;">
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="primary" dark v-bind="attrs" v-on="on" >
+                Profile
+              </v-btn>
+            </template>
+            <v-list v-if="role == 0">
+              <v-list-item v-for="(item, index) in items" :key="index" @click="toPage(item.title)" >
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+
+            <v-list v-else>
+              <v-list-item v-for="(item, index) in items2" :key="index" @click="toPage(item.title)" >
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </div>
         <!-- <v-btn icon>
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn> -->
@@ -60,14 +81,29 @@ import swal from 'sweetalert'
 
 export default {
   name: 'Navbar',
+  data: () => ({
+      role: 0,
+      items: [
+        { title: 'Manage User' },
+        { title: 'Logout' },
+      ],
+      items2: [
+        { title: 'Edit Profile' },
+        { title: 'Logout' },
+      ],
+    }),
   methods: {
-    logout () {
-      localStorage.removeItem('login_status')
-      this.$router.push({ name: 'login' })
-      swal('', 'Logout Success', 'success', {
-        buttons: false,
-        timer: 1000
-      })
+    toPage(e) {
+      if (e == 'Manage User') {
+        this.$router.push({ name: 'manageuser' })
+      } else if (e == 'Logout') {
+        localStorage.removeItem('login_status')
+        this.$router.push({ name: 'login' })
+        swal('', 'Logout Success', 'success', {
+          buttons: false,
+          timer: 1000
+        })
+      }
     }
   }
 }

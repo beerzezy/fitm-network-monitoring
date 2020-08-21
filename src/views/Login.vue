@@ -53,6 +53,8 @@ export default {
     login () {
       if (this.username == 'admin' && this.userpassword == 'admin') {
         localStorage.setItem("login_status", 'logged')
+        // localStorage.setItem("role", '0')
+        // localStorage.setItem("user", '0')
         this.$router.push({ name: 'dashboard' })
         swal('', 'Login Success', 'success', {
           buttons: false,
