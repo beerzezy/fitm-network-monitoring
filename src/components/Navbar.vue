@@ -95,7 +95,9 @@ export default {
   methods: {
     toPage(e) {
       if (e == 'Manage User') {
-        this.$router.push({ name: 'manageuser' })
+        const path = '/manageuser'
+        if (this.$route.path !== path) this.$router.push(path)
+        // this.$router.push({ name: 'manageuser' })
       } else if (e == 'Logout') {
         localStorage.removeItem('login_status')
         this.$router.push({ name: 'login' })
