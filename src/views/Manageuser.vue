@@ -37,14 +37,14 @@
 
                                     <v-card-text>
                                         <ValidationObserver ref="observer" v-slot="{ validate }">
+                                            <ValidationProvider v-slot="{ errors }" name="Username" rules="required">
+                                                <v-text-field :error-messages="errors" v-model="editedItem.username" label="Username"></v-text-field>
+                                            </ValidationProvider>
                                             <ValidationProvider v-slot="{ errors }" name="Firstname" rules="required">
                                                 <v-text-field :error-messages="errors" v-model="editedItem.firstname" label="Firstname"></v-text-field>
                                             </ValidationProvider>
                                             <ValidationProvider v-slot="{ errors }" name="Lastname" rules="required">
                                                 <v-text-field :error-messages="errors" v-model="editedItem.lastname" label="Lastname"></v-text-field>
-                                            </ValidationProvider>
-                                            <ValidationProvider v-slot="{ errors }" name="Username" rules="required">
-                                                <v-text-field :error-messages="errors" v-model="editedItem.username" label="Username"></v-text-field>
                                             </ValidationProvider>
                                             <ValidationProvider v-if="formTitle == 'Add User' || switchChnge" v-slot="{ errors }" name="Password" vid="confirmation" rules="required|min:6">
                                                 <v-text-field
