@@ -55,13 +55,13 @@
                 Profile
               </v-btn>
             </template>
-            <v-list v-if="role == 0">
+            <v-list v-if="userInfo.role == 0">
               <v-list-item v-for="(item, index) in items" :key="index" @click="toPage(item.title)" >
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item>
             </v-list>
 
-            <v-list v-else>
+            <v-list v-if="userInfo.role == 1">
               <v-list-item v-for="(item, index) in items2" :key="index" @click="toPage(item.title)" >
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item>
@@ -82,24 +82,45 @@ import swal from 'sweetalert'
 export default {
   name: 'Navbar',
   data: () => ({
-      role: 0,
-      items: [
-        { title: 'Manage User' },
-        { title: 'Logout' },
-      ],
-      items2: [
-        { title: 'Edit Profile' },
-        { title: 'Logout' },
-      ],
-    }),
+    role: 0,
+    items: [
+      { title: 'Manage User' },
+      { title: 'Logout' },
+    ],
+    items2: [
+      { title: 'Edit Profile' },
+      { title: 'Logout' },
+    ],
+    userInfo: {}
+  }),
+  created () {
+    let userInfoStr = localStorage.getItem('user_info')
+    this.userInfo = JSON.parse(userInfoStr)
+  },
   methods: {
     toPage(e) {
       if (e == 'Manage User') {
         const path = '/manageuser'
-        if (this.$route.path !== path) this.$router.push(path)
-        // this.$router.push({ name: 'manageuser' })
-      } else if (e == 'Logout') {
+        if (this.$route.path !== path) {
+          let protocol = location.protocol
+          let port = location.port
+          let hostname = window.location.hostname
+          location.href = `${protocol}//${hostname}:${port}${path}`
+        }
+      } 
+      else if (e == 'Edit Profile') {
+        const path = '/editprofile'
+        if (this.$route.path !== path) {
+          let protocol = location.protocol
+          let port = location.port
+          let hostname = window.location.hostname
+          location.href = `${protocol}//${hostname}:${port}${path}`
+        }
+      }
+      else if (e == 'Logout') {
+        localStorage.removeItem('user_info')
         localStorage.removeItem('login_status')
+
         this.$router.push({ name: 'login' })
         swal('', 'Logout Success', 'success', {
           buttons: false,

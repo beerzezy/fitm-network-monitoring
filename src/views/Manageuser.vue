@@ -69,33 +69,6 @@
                                         </ValidationObserver>
 
                                         <v-switch v-if="formTitle == 'Edit'" v-model="switchChnge" :label="`Change password`"></v-switch>
-                                        <!-- <v-row>
-                                            <v-col cols="12" sm="6" md="4">
-                                                <ValidationProvider v-slot="{ errors }" name="Firstname" rules="required">
-                                                    <v-text-field :error-messages="errors" v-model="editedItem.firstname" label="Firstname"></v-text-field>
-                                                </ValidationProvider>
-                                            </v-col>
-                                            <v-col cols="12" sm="6" md="4">
-                                                <ValidationProvider v-slot="{ errors }" name="Lastname" rules="required">
-                                                    <v-text-field :error-messages="errors" v-model="editedItem.lastname" label="Lastname"></v-text-field>
-                                                </ValidationProvider>
-                                            </v-col>
-                                            <v-col cols="12" sm="6" md="4">
-                                                <ValidationProvider v-slot="{ errors }" name="Username" rules="required">
-                                                    <v-text-field :error-messages="errors" v-model="editedItem.username" label="Username"></v-text-field>
-                                                </ValidationProvider>
-                                            </v-col>
-                                            <v-col v-if="formTitle == 'Add User'" cols="12" sm="6" md="4">
-                                                <ValidationProvider v-slot="{ errors }" name="Password" vid="confirmation" rules="required">
-                                                    <v-text-field :error-messages="errors" type="password" v-model="editedItem.password" label="Password"></v-text-field>
-                                                </ValidationProvider>
-                                            </v-col>
-                                            <v-col v-if="formTitle == 'Add User'" cols="12" sm="6" md="4">
-                                                <ValidationProvider v-slot="{ errors }" name="Confirm Password" rules="required|confirmed:confirmation">
-                                                    <v-text-field :error-messages="errors" type="password" v-model="editedItem.confirmPassword" label="Confirm Password"></v-text-field>
-                                                </ValidationProvider>
-                                            </v-col>
-                                        </v-row> -->
                                     </v-card-text>
 
                                     <v-card-actions>
@@ -133,7 +106,7 @@
 </template>
 
 <script>
-import { userRef } from './firebase'
+import { userRef, defaultUserRef } from './firebase'
 import Navbar from '@/components/Navbar.vue'
 import swal from 'sweetalert'
 import { required, max, min, confirmed } from 'vee-validate/dist/rules'
@@ -166,6 +139,7 @@ export default {
     data () {
         return {
             users: [],
+            role: 0,
             dialog: false,
             showPW1: false,
             showPW2: false,
@@ -178,6 +152,7 @@ export default {
             ],
             editedIndex: -1,
             editedItem: {
+                id: '',
                 username: '',
                 firstname: '',
                 lastname: '',
@@ -185,20 +160,24 @@ export default {
                 confirmPassword: ''
             },
             defaultItem: {
+                id: '',
                 username: '',
                 firstname: '',
                 lastname: '',
                 password: '',
                 confirmPassword: ''
             },
+            adminInfo: {
+                username: '',
+                password: '',
+                role: ''
+            },
+            userInfo: {}
         }
     },
     computed: {
       formTitle () {
         return this.editedIndex === -1 ? 'Add User' : 'Edit'
-      },
-      realtimeplus () {
-        return this.users
       }
     },
     watch: {
@@ -207,18 +186,28 @@ export default {
       },
     },
     created () {
+        defaultUserRef.on('value', (snapshot) => {
+            this.adminInfo = Object.assign({}, snapshot.val())
+        })
+
         userRef.on('child_added', (snapshot) => {
             this.users.push({...snapshot.val(), id:snapshot.key})
-            //console.log(this.users)
         })
 
         userRef.on('child_changed', (snapshot) => {
-            const index = this.users.findIndex(users => users.id == snapshot.key)        
-            this.users[index].password = this.editedItem.password
-            this.users[index].firstname = this.editedItem.firstname
-            this.users[index].lastname = this.editedItem.lastname
-            this.users[index].username = this.editedItem.username
+            const index = this.users.findIndex(users => users.id == snapshot.key)  
+            // this.users[index].password = this.editedItem.password
+            // this.users[index].firstname = this.editedItem.firstname
+            // this.users[index].lastname = this.editedItem.lastname
+            // this.users[index].username = snapshot.val().username
+            this.users[index].password = snapshot.val().password
+            this.users[index].firstname = snapshot.val().firstname
+            this.users[index].lastname = snapshot.val().lastname
+            this.users[index].username = snapshot.val().username
         })
+
+        let userInfoStr = localStorage.getItem('user_info')
+        this.userInfo = JSON.parse(userInfoStr)
     },
     methods: {
         checkUser () {},
@@ -244,16 +233,23 @@ export default {
         },
         save () {
             // Validate User
-            if (this.formTitle == 'Add User') {
+            if (this.formTitle == 'Add User' || this.formTitle == 'Edit') {
                 const index = this.users.findIndex(users => users.username == this.editedItem.username)
-                if (index != -1) {
-                    swal('', 'User already exists', 'error', {
+                if (index != -1 && this.users[index].id != this.editedItem.id) {
+                    swal('', 'User already exist', 'error', {
+                            icon: 'error'
+                    })
+                    return
+                }
+                if (this.adminInfo.username == this.editedItem.username) {
+                    swal('', `${this.editedItem.username} cannot be used`, 'error', {
                             icon: 'error'
                     })
                     return
                 }
             }
 
+            // Add User
             if (this.formTitle == 'Add User') {
                 userRef.push({
                     firstname: this.editedItem.firstname,
@@ -263,6 +259,7 @@ export default {
                     role: 1
                 })
             }
+            // Edit Profile
             if (this.formTitle == 'Edit') {
                 if (this.switchChnge) {
                     userRef.child(this.editedItem.id).update({
@@ -295,5 +292,4 @@ export default {
 </script>
 
 <style>
-
 </style>

@@ -37,24 +37,88 @@
 
 <script>
 import swal from 'sweetalert'
-
-const UserName = 'admin'
-const UserPassword = 'admin'
+import { defaultUserRef, userRef } from './firebase'
 
 export default {
   name: 'Login',
   data () {
     return {
       username: null,
-      userpassword: null
+      userpassword: null,
+      userInfo: {
+        username: '',
+        firstname: '',
+        lastname: '',
+        password: '',
+        role: ''
+      },
+      DefaultUserInfo: {
+        username: '',
+        firstname: '',
+        lastname: '',
+        password: '',
+        role: ''
+      },
+      adminInfo: {
+        username: '',
+        password: '',
+        role: ''
+      }
     }
   },
+  created () {
+    defaultUserRef.on('value', (snapshot) => {
+      this.adminInfo = Object.assign({}, snapshot.val())
+    })
+  },
   methods: {
-    login () {
-      if (this.username == 'admin' && this.userpassword == 'admin') {
+    async login () {
+      // Get user info
+      this.userInfo = Object.assign({}, this.DefaultUserInfo)
+      const userSnap = await userRef.orderByChild("username").equalTo(this.username).once('value', (snapshot) => {
+        return snapshot
+      })
+      if (userSnap.val() != null) {
+        userSnap.forEach(value => {
+          this.userInfo = {
+              username: value.val().username,
+              firstname: value.val().firstname,
+              lastname: value.val().lastname,
+              password: value.val().password,
+              role: value.val().role
+          }
+        })
+      }
+
+      // Admin login
+      if (this.username == this.adminInfo.username && this.adminInfo.password == this.userpassword) {
         localStorage.setItem("login_status", 'logged')
-        // localStorage.setItem("role", '0')
-        // localStorage.setItem("user", '0')
+        let prepareAdminInfo = {
+          username: this.adminInfo.username,
+          firstname: null,
+          lastname: null,
+          role: this.adminInfo.role,
+        }
+        localStorage.setItem("user_info", JSON.stringify(prepareAdminInfo))
+        
+        this.$router.push({ name: 'dashboard' })
+        swal('', 'Login Success', 'success', {
+          buttons: false,
+          timer: 1000
+        })
+        return
+      }
+      // User login
+      if (this.userInfo.password == this.userpassword) {
+        localStorage.setItem("login_status", 'logged')
+        let prepareUserInfo = {
+          username: this.userInfo.username,
+          firstname: this.userInfo.firstname,
+          lastname: this.userInfo.lastname,
+          role: this.userInfo.role,
+        }
+        localStorage.setItem("user_info", JSON.stringify(this.userInfo))
+
         this.$router.push({ name: 'dashboard' })
         swal('', 'Login Success', 'success', {
           buttons: false,

@@ -39,6 +39,12 @@ const routes = [
     name: 'manageuser',
     component: () => import('../views/Manageuser.vue')
   }
+  ,
+  {
+    path: '/editprofile',
+    name: 'editprofile',
+    component: () => import('../views/Editprofile.vue')
+  }
 ]
 
 const router = new VueRouter({
