@@ -2,7 +2,7 @@
   <div>
     <v-app-bar
       fixed
-      color="grey darken-3">
+      color="grey" style="background:#343a40 !important;">
       <div class="mag-l-40">
         <v-toolbar-title class="nav-title">
           FITM Monitoring
