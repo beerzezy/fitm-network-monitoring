@@ -72,7 +72,7 @@
             </div>
             <v-row>
               <v-col>
-                <div :class="tempLevel">
+                <div :class="tempLevel" :style="tempLevelCss" >
                   <div class="pad-chart">
                     <div class="title-sta">
                       <p>Temperature</p>
@@ -87,7 +87,8 @@
                         <v-col
                           cols="7"
                           class="pl-10">
-                          <span class="status-val">{{ deviceData.temperature }} C.</span>
+                          <span v-if="deviceData.temperature > 0" class="status-val">{{ deviceData.temperature }} C.</span>
+                          <span v-else class="status-val">No data</span>
                         </v-col>
                       </v-row>
                     </div>
@@ -121,7 +122,7 @@
             </v-row>
             <v-row>
               <v-col>
-                <div :class="cpuLevel">
+                <div :class="cpuLevel" :style="cpuLevelCss">
                   <div class="pad-chart">
                     <div class="title-sta">
                       <p>CPU</p>
@@ -137,16 +138,15 @@
                       <v-col
                         cols="7"
                         class="pl-8">
-                        <span
-                          id="cpu"
-                          class="status-val">{{ deviceData.cpu }} %</span>
+                        <span v-if="deviceData.cpu > 0" id="cpu" class="status-val">{{ deviceData.cpu }} %</span>
+                        <span v-else id="cpu" class="status-val">No Data</span>
                       </v-col>
                     </v-row>
                   </div>
                 </div>
               </v-col>
               <v-col>
-                <div :class="memLevel">
+                <div :class="memLevel" :style="memLevelCss">
                   <div class="pad-chart">
                     <div class="title-sta">
                       <p>Memmory</p>
@@ -162,7 +162,8 @@
                       <v-col
                         cols="7"
                         class="pl-10">
-                        <span class="status-val">{{ deviceData.memory }} MB</span>
+                        <span v-if="deviceData.memory > 0" class="status-val">{{ deviceData.memory }} MB</span>
+                        <span v-else class="status-val">No Data</span>
                       </v-col>
                     </v-row>
                   </div>
@@ -285,7 +286,24 @@ export default {
       if (this.deviceData.temperature >= 50 && this.deviceData.temperature <= 60) {
         return 'status-box warn-sta'
       }
-      return 'status-box danger-sta'
+      if (this.deviceData.temperature >= 60) {
+        return 'status-box danger-sta'
+      }
+      
+      return 'status-box'
+    },
+    tempLevelCss () {
+      if (this.deviceData.temperature < 50) {
+        return ''
+      }
+      if (this.deviceData.temperature >= 50 && this.deviceData.temperature <= 60) {
+        return ''
+      }
+      if (this.deviceData.temperature >= 60) {
+        return ''
+      }
+      
+      return 'background-color: #858481'
     },
     cpuLevel () {
       if (this.deviceData.cpu < 30) {
@@ -294,16 +312,53 @@ export default {
       if (this.deviceData.cpu > 30 && this.deviceData.cpu < 50) {
         return 'status-box warn-sta'
       }
-      return 'status-box danger-sta'
+      if (this.deviceData.temperature > 50) {
+        return 'status-box danger-sta'
+      }
+      
+      return 'status-box'
+    },
+    cpuLevelCss () {
+      if (this.deviceData.cpu < 30) {
+        return ''
+      }
+      if (this.deviceData.cpu > 30 && this.deviceData.cpu < 50) {
+        return ''
+      }
+      if (this.deviceData.temperature > 50) {
+        return ''
+      }
+      
+      return 'background-color: #858481'
     },
     memLevel () {
-      if (this.deviceData.memory < 30) {
+      if (this.deviceData.memory < 30 && this.deviceData.memory != null) {
         return 'status-box safe-sta'
       }
       if (this.deviceData.memory > 30 && this.deviceData.memory < 50) {
         return 'status-box warn-sta'
       }
-      return 'status-box danger-sta'
+      if (this.deviceData.memory > 50) {
+        return 'status-box danger-sta'
+      }
+      // if (this.deviceData.temperature > 50) {
+      //   return 'status-box danger-sta'
+      // }
+      
+      return 'status-box'
+    },
+    memLevelCss () {
+      if (this.deviceData.memory < 30 && this.deviceData.memory != null) {
+        return ''
+      }
+      if (this.deviceData.memory > 30 && this.deviceData.memory < 50) {
+        return ''
+      }
+      if (this.deviceData.memory > 50) {
+        return ''
+      }
+      
+      return 'background-color: #858481'
     }
   },
   created () {
