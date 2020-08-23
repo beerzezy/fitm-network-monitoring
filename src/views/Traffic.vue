@@ -101,7 +101,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[0] }} </span>  
+                  Traffic <span> {{ device[0] }} </span>  (Inbound / MB, Outbound / MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -120,7 +120,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[1] }} </span> 
+                  Traffic <span> {{ device[1] }} </span> (Inbound / MB, Outbound / MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -140,7 +140,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[2] }} </span>
+                  Traffic <span> {{ device[2] }} </span> (Inbound / MB, Outbound / MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -158,7 +158,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[3] }} </span>
+                  Traffic <span> {{ device[3] }} </span> (Inbound / MB, Outbound / MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -178,7 +178,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[4] }} </span>
+                  Traffic <span> {{ device[4] }} </span> (Inbound / MB, Outbound / MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -196,7 +196,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[5] }} </span>
+                  Traffic <span> {{ device[5] }} </span> (Inbound / MB, Outbound / MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -216,7 +216,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[6] }} </span>
+                  Traffic <span> {{ device[6] }} </span> (Inbound / MB, Outbound / MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -234,7 +234,7 @@
             <div class="bg-ct">
               <div class="pad-chart">
                 <div class="title-chart">
-                  Traffic <span> {{ device[7] }} </span> 
+                  Traffic <span> {{ device[7] }} </span> (Inbound / MB, Outbound / MB)
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -281,7 +281,7 @@ export default {
       ],
       loading: false,
       timeType: 'now',
-      showType: 'Show All of The Day (Inbound / MB, Outbound / MB)',
+      showType: 'Show All of The Day',
       chartSettings: {
         metrics: ['inbound', 'outbound'],
         dimension: ['timestamp']
@@ -359,17 +359,17 @@ export default {
     getShowTime() {
       var dateNow = new Date(Date.now());
       if (this.timeType == 'now') {
-        this.showType =   dateNow.toDateString() + '  |  Show All of The Day (Inbound / MB, Outbound / MB)'
+        this.showType =   dateNow.toDateString() + '  |  Show All of The Day'
       } else if (this.timeType == 'hours') {
-        this.showType =  dateNow.toDateString() + '  |  Show Minute By Hour (Inbound / MB, Outbound / MB)'
+        this.showType =  dateNow.toDateString() + '  |  Show Minute By Hour'
       } else if (this.timeType == 'days') {
-        this.showType =  dateNow.toDateString() + '  |  Show Average Hour By Days (Inbound / MB, Outbound / MB)'
+        this.showType =  dateNow.toDateString() + '  |  Show Average Hour By Days'
       } else if (this.timeType == 'month') {
-        this.showType =  dateNow.toDateString() + '  |  Show Average Day By Month (Inbound / MB, Outbound / MB)'
+        this.showType =  dateNow.toDateString() + '  |  Show Average Day By Month'
       } else if (this.timeType == 'year') {
-        this.showType =  dateNow.toDateString() + '  |  Show Average Month By Year (Inbound / MB, Outbound / MB)'
+        this.showType =  dateNow.toDateString() + '  |  Show Average Month By Year'
       } else if (this.timeType == 'pick') {
-        this.showType =  dateNow.toDateString()  + '  |  Show Average Days By Date Picked (Inbound / MB, Outbound / MB)'
+        this.showType =  dateNow.toDateString()  + '  |  Show Average Days By Date Picked'
       }
     },
     alertStartGreaterThanEndTime() {

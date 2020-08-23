@@ -26,7 +26,7 @@
             <div class="bg-ct flex-62">
               <div class="pad-chart pb-0">
                 <div class="title-chart">
-                  <p>Internet Traffic SW9400</p>
+                  <p>Internet Traffic SW9400  (Inbound / MB, Outbound / MB)</p>
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -213,7 +213,7 @@ export default {
         columns: ['deviceName', 'speed'],
         rows: []
       },
-      showType: new Date(Date.now()).toDateString() +'Show All of The Day (Inbound / MB, Outbound / MB)'
+      showType: new Date(Date.now()).toDateString() +'Show All of The Day'
     }
   },
   mounted () {
