@@ -5,7 +5,93 @@
     </header>
   <div align='right'>
   </div> 
-    <div class="y-scroll">
+
+  <div style="padding:15px;margin-top:70px;">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card border-dark">
+          <div class="card-header text-white bg-dark mb-3">Traffic Radio</div>
+          <div class="card-body">
+            <ve-ring
+              :data="ringData"
+              :settings="ringSettings">
+            </ve-ring>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card border-dark">
+          <div class="card-header text-white bg-dark mb-3">Internet Traffic SW9400  {{ showType }} (Inbound / MB, Outbound / MB)</div>
+          <div class="card-body">
+            <ve-line
+              :data="chartData"
+              :settings="chartSettings"
+              :colors="colors">
+            </ve-line>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card border-dark">
+          <div class="card-header text-white bg-dark mb-3">Top 10 Rank Vlan Traffic</div>
+          <div class="card-body">
+             <ve-histogram
+                v-if="topRank === 'inbound'"
+                height="350px"
+                :data="inboundData"
+                :settings="inboundSettings"
+                :colors="inboundColors"
+                :extend="extend">
+              </ve-histogram>
+              <ve-histogram
+                v-else
+                height="350px"
+                :data="outboundData"
+                :settings="outboundSettings"
+                :colors="outboundColors"
+                :extend="extend">
+              </ve-histogram>
+              <div style="text-align:right;">
+                <button @click="topRank = 'inbound'" style="margin-right:10px;" type="button" class="btn btn-primary">Inbound</button>
+                <button @click="topRank = 'outbound'" type="button" class="btn btn-primary">Outbound</button>
+              </div>
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" style="text-align:center;">No.</th>
+                    <th scope="col" style="text-align:center;">Name</th>
+                    <th scope="col" style="text-align:center;">Value (MB)</th>
+                  </tr>
+                </thead>
+                <tbody v-if="topRank === 'inbound'">
+                  <tr v-for="(item,index) in inboundData.rows" :key="index">
+                    <td style="text-align:center;">{{ index + 1 }}</td>
+                    <td style="text-align:center;">{{ item.interface.replace("unrouted ", "") }}</td>
+                    <td style="text-align:center;">{{ item.inbound }}</td>
+                  </tr>
+                </tbody>
+
+                <tbody v-else>
+                  <tr v-for="(item,index) in outboundData.rows" :key="index">
+                    <td style="text-align:center;">{{ index + 1 }}</td>
+                    <td style="text-align:center;">{{ item.interface.replace("unrouted ", "") }}</td>
+                    <td style="text-align:center;">{{ item.outbound }}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <!-- <div class="y-scroll">
       <div class="contain">
         <div class="mx-8">
           <div class="dp-flex">
@@ -88,9 +174,9 @@
                         <th class="text-center">
                           Name
                         </th>
-                        <!-- <th class="text-center">
+                        <th class="text-center">
                           Network
-                        </th> -->
+                        </th>
                         <th class="text-center">
                           Value (MB)
                         </th>
@@ -105,7 +191,7 @@
                         <td class="text-center">
                           {{ item.interface.replace("unrouted ", "") }}
                         </td>
-                        <!-- <td>{{ }}</td> -->
+                         <td>{{ }}</td> 
                         <td class="text-center">
                           {{ item.inbound }}
                         </td>
@@ -147,7 +233,7 @@
           </v-row>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
