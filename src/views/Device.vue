@@ -4,7 +4,152 @@
       <Navbar />
     </header>
     <div>
-      <v-container class="mag-t-80">
+
+    <div style="padding:15px;margin-top:70px;">
+
+      <div style="text-align:right;">
+        <button @click="getDeviceStatus('r124')" style="margin-left:10px;" type="button" class="btn btn-primary">R124</button>
+        <button @click="getDeviceStatus('r330a')" style="margin-left:10px;" type="button" class="btn btn-primary">R330A</button>
+        <button @click="getDeviceStatus('r101c')" style="margin-left:10px;" type="button" class="btn btn-primary">R101C</button>
+        <button @click="getDeviceStatus('r415')" style="margin-left:10px;" type="button" class="btn btn-primary">R415</button>
+        <button @click="getDeviceStatus('rshop')" style="margin-left:10px;" type="button" class="btn btn-primary">RSHOP</button>
+        <button @click="getDeviceStatus('sw9400')" style="margin-left:10px;" type="button" class="btn btn-primary">SW9400</button>
+        <button @click="getDeviceStatus('sw3850')" style="margin-left:10px;" type="button" class="btn btn-primary">SW3850</button>
+        <button @click="getDeviceStatus('rsad')" style="margin-left:10px;" type="button" class="btn btn-primary">RSAD</button>
+      </div>
+
+      <div class="card border-dark" style="margin-top:10px;">
+        <div class="card-header border-dark" style="background-color:#343a40;color:#fff;">
+          Device: <span style="font-size:16px;"> {{ device }} </span>
+        </div>
+        <div class="card-header border-dark" style="background-color:#343a40;color:#fff;">
+          IP Address: <span style="font-size:16px;"> {{ deviceData.ip }} </span>
+        </div>
+        <div class="card-header border-dark" style="background-color:#343a40;color:#fff;">
+          OS: <span style="font-size:16px;"> {{osStr}} </span>
+        </div>
+        
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card border-0">
+              <div class="card-body">
+                <div :class="tempLevel" :style="tempLevelCss" >
+                    <div class="pad-chart">
+                      <div class="title-sta">
+                        <p>Temperature</p>
+                        <v-row>
+                          <v-col
+                            cols="5"
+                            class="text-center">
+                            <v-icon class="icon-size">
+                              mdi-coolant-temperature
+                            </v-icon>
+                          </v-col>
+                          <v-col
+                            cols="7"
+                            class="pl-10">
+                            <span v-if="deviceData.temperature > 0" class="status-val">{{ deviceData.temperature }} C.</span>
+                            <span v-else class="status-val">No data</span>
+                          </v-col>
+                        </v-row>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card border-0">
+              <div class="card-body">
+                <div class="status-box safe-sta">
+                    <div class="pad-chart pr-0">
+                      <div class="title-sta">
+                        <p>Uptime</p>
+                      </div>
+                      <v-row>
+                        <v-col
+                          cols="4"
+                          class="text-center">
+                          <v-icon class="icon-size">
+                            mdi-calendar
+                          </v-icon>
+                        </v-col>
+                        <v-col
+                          cols="8">
+                          <span
+                            id="uptime"
+                            class="status-val">{{ deviceData.upTime }}</span>
+                        </v-col>
+                      </v-row>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card border-0">
+              <div class="card-body">
+                <div :class="cpuLevel" :style="cpuLevelCss">
+                  <div class="pad-chart">
+                    <div class="title-sta">
+                      <p>CPU</p>
+                    </div>
+                    <v-row>
+                      <v-col
+                        cols="5"
+                        class="text-center">
+                        <v-icon class="icon-size">
+                          mdi-cpu-64-bit
+                        </v-icon>
+                      </v-col>
+                      <v-col
+                        cols="7"
+                        class="pl-8">
+                        <span v-if="deviceData.cpu > 0" id="cpu" class="status-val">{{ deviceData.cpu }} %</span>
+                        <span v-else id="cpu" class="status-val">No Data</span>
+                      </v-col>
+                    </v-row>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card border-0">
+              <div class="card-body">
+                <div :class="memLevel" :style="memLevelCss">
+                  <div class="pad-chart">
+                    <div class="title-sta">
+                      <p>Memmory</p>
+                    </div>
+                    <v-row>
+                      <v-col
+                        cols="5"
+                        class="text-center">
+                        <v-icon class="icon-size">
+                          mdi-memory
+                        </v-icon>
+                      </v-col>
+                      <v-col
+                        cols="7"
+                        class="pl-10">
+                        <span v-if="deviceData.memory > 0" class="status-val">{{ deviceData.memory }} MB</span>
+                        <span v-else class="status-val">No Data</span>
+                      </v-col>
+                    </v-row>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- <v-container class="mag-t-80">
         <div class="select-device mag-b-40">
           <v-btn
             width="100"
@@ -171,7 +316,7 @@
               </v-col>
             </v-row>
           </div>
-        </div>
+        </div> -->
         <!-- <div class="dp-flex">
           <div class="bg-ct flex-50 mr-10">
             <div class="pad-chart">
@@ -243,7 +388,7 @@
             </div>
           </div>
         </div> -->
-      </v-container>
+      <!-- </v-container> -->
     </div>
   </div>
 </template>

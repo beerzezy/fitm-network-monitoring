@@ -4,9 +4,9 @@
         <div class="container">
             <div class="row">
                 <div class="col left">
-                    <table style="width:1400px;margin-top:11px;">
+                    <table style="width:1400px;margin-top:14px;">
                         <tr>
-                            <td style="width:598px"></td>
+                            <td style="width:610px"></td>
                             <td style="width:260px">
                                 <table id="r124" style="margin-top:42px;">
                                     <tr>
