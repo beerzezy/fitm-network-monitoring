@@ -4,7 +4,6 @@
       <Navbar />
     </header>
   <div align='right'>
-      {{ showType }}
   </div> 
     <div class="y-scroll">
       <div class="contain">
@@ -26,7 +25,7 @@
             <div class="bg-ct flex-62">
               <div class="pad-chart pb-0">
                 <div class="title-chart">
-                  <p>Internet Traffic SW9400  (Inbound / MB, Outbound / MB)</p>
+                  <p>Internet Traffic SW9400  {{ showType }} (Inbound / MB, Outbound / MB)</p>
                 </div>
                 <div class="bg-chart">
                   <ve-line
@@ -213,7 +212,7 @@ export default {
         columns: ['deviceName', 'speed'],
         rows: []
       },
-      showType: new Date(Date.now()).toDateString() +'Show All of The Day'
+      showType: new Date(Date.now()).toDateString()
     }
   },
   mounted () {
