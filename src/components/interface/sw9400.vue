@@ -151,7 +151,7 @@
                         </tr>
                     </table>
 
-                    <table style="width:1400px;margin-top:63px;">
+                    <table style="width:1400px;margin-top:95px;margin-left:20px;">
                         <tr>
                             <td style="width:52px"></td>
                             <td style="width:260px;">
@@ -306,7 +306,7 @@
                                     </tr>
                                 </table>
                             </td>
-                            <td style="width:260px;padding-left:14px;">
+                            <td style="width:260px;padding-left:20px;">
                                 <table id="r124">
                                     <tr>
                                         <td id="gig1-0-13">
@@ -458,7 +458,7 @@
                                     </tr>
                                 </table>
                             </td>
-                            <td style="padding-left:14px;">
+                            <td style="padding-left:20px;">
                                 <table id="r124">
                                     <tr>
                                         <td id="gig1-0-25">
@@ -611,7 +611,7 @@
                                 </table>
                             </td>
                             <td>
-                                <table id="r124" style="margin-left:-18px;">
+                                <table id="r124" style="margin-left:-160px;">
                                     <tr>
                                         <td id="gig1-0-37">
                                             <span v-if="interfaceInfo[33].status == 'up'">
@@ -765,7 +765,7 @@
                         </tr>
                     </table>
 
-                    <table style="width:1400px;margin-top:59px;">
+                    <table style="width:1400px;margin-top:80px;margin-left:20px;">
                         <tr>
                             <td style="width:52px"></td>
                             <td style="width:260px;">
@@ -921,7 +921,7 @@
                                 </table>
                             </td>
                             <td style="width:260px;padding-left:14px;">
-                                <table id="r124">
+                                <table id="r124" style="margin-left:8px;">
                                     <tr>
                                         <td id="gig2-0-13">
                                             <span v-if="interfaceInfo[55].status == 'up'">
@@ -1073,7 +1073,7 @@
                                 </table>
                             </td>
                             <td style="padding-left:14px;">
-                                <table id="r124">
+                                <table id="r124" style="margin-left:8px;">
                                     <tr>
                                         <td id="gig2-0-25">
                                             <span v-if="interfaceInfo[68].status == 'up'">
@@ -1222,7 +1222,7 @@
                                 </table>
                             </td>
                             <td>
-                                <table id="r124" style="margin-left:-18px;">
+                                <table id="r124" style="margin-left:-100px;">
                                     <tr>
                                         <td id="gig2-0-37">
                                             <span v-if="interfaceInfo[81].status == 'up'">

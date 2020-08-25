@@ -210,7 +210,7 @@
                             </td>
                             
                             <td style="width:348px;">
-                                <table id="r124" style="margin-left:8px;">
+                                <table id="r124" style="margin-left:17px;">
                                     <tr>
                                         <td id="gig17">
                                             <span v-if="interfaceInfo[8].status == 'up'">
