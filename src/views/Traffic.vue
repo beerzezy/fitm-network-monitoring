@@ -96,7 +96,135 @@
               </v-col>
                 {{ showType }}
           </v-row>
-        <v-row>
+
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card border-dark">
+              <div class="card-header text-white bg-dark mb-3">Traffic <span> {{ device[0] }} </span>  (Inbound / MB, Outbound / MB)</div>
+              <div class="card-body">
+                 <ve-line
+                    :data="r124Data"
+                    :settings="chartSettings"
+                    :colors="colors"
+                    :loading="loading"
+                    height="350px">
+                  </ve-line>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card border-dark">
+              <div class="card-header text-white bg-dark mb-3">Traffic <span> {{ device[1] }} </span> (Inbound / MB, Outbound / MB)</div>
+              <div class="card-body">
+                <ve-line
+                  :data="r330aData"
+                  :settings="chartSettings"
+                  :colors="colors"
+                  :loading="loading"
+                  height="350px">
+                </ve-line>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card border-dark">
+              <div class="card-header text-white bg-dark mb-3">Traffic <span> {{ device[2] }} </span> (Inbound / MB, Outbound / MB)</div>
+              <div class="card-body">
+                <ve-line
+                  :data="r101cData"
+                  :settings="chartSettings"
+                  :colors="colors"
+                  :loading="loading"
+                  height="350px">
+                </ve-line>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card border-dark">
+              <div class="card-header text-white bg-dark mb-3">Traffic <span> {{ device[3] }} </span> (Inbound / MB, Outbound / MB)</div>
+              <div class="card-body">
+                 <ve-line
+                    :data="r415Data"
+                    :settings="chartSettings"
+                    :colors="colors"
+                    :loading="loading"
+                    height="350px">
+                  </ve-line>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card border-dark">
+              <div class="card-header text-white bg-dark mb-3">Traffic <span> {{ device[4] }} </span> (Inbound / MB, Outbound / MB)</div>
+              <div class="card-body">
+               <ve-line
+                    :data="rshopData"
+                    :settings="chartSettings"
+                    :colors="colors"
+                    :loading="loading"
+                    height="350px">
+                  </ve-line>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card border-dark">
+              <div class="card-header text-white bg-dark mb-3">Traffic <span> {{ device[5] }} </span> (Inbound / MB, Outbound / MB)</div>
+              <div class="card-body">
+                 <ve-line
+                    :data="sw9400Data"
+                    :settings="chartSettings"
+                    :colors="colors"
+                    :loading="loading"
+                    height="350px">
+                  </ve-line>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card border-dark">
+              <div class="card-header text-white bg-dark mb-3">Traffic <span> {{ device[6] }} </span> (Inbound / MB, Outbound / MB)</div>
+              <div class="card-body">
+                <ve-line
+                    :data="sw3850Data"
+                    :settings="chartSettings"
+                    :colors="colors"
+                    :loading="loading"
+                    height="350px">
+                  </ve-line>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card border-dark">
+              <div class="card-header text-white bg-dark mb-3">Traffic <span> {{ device[7] }} </span> (Inbound / MB, Outbound / MB)</div>
+              <div class="card-body">
+                 <ve-line
+                    :data="rsadData"
+                    :settings="chartSettings"
+                    :colors="colors"
+                    :loading="loading"
+                    height="350px">
+                  </ve-line>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- <v-row>
           <v-col cols="6">
             <div class="bg-ct">
               <div class="pad-chart">
@@ -248,7 +376,7 @@
               </div>
             </div>
           </v-col>
-        </v-row>
+        </v-row> -->
       </div>
     </div>
   </div>
