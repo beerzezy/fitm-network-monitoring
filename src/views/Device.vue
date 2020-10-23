@@ -477,13 +477,13 @@ export default {
       return 'background-color: #858481'
     },
     memLevel () {
-      if (this.deviceData.memory < 30 && this.deviceData.memory != null) {
+      if (this.deviceData.memory < 172 && this.deviceData.memory != null) {
         return 'status-box safe-sta'
       }
-      if (this.deviceData.memory > 30 && this.deviceData.memory < 50) {
+      if (this.deviceData.memory > 172 && this.deviceData.memory < 345) {
         return 'status-box warn-sta'
       }
-      if (this.deviceData.memory > 50) {
+      if (this.deviceData.memory >= 345) {
         return 'status-box danger-sta'
       }
       // if (this.deviceData.temperature > 50) {
@@ -493,13 +493,13 @@ export default {
       return 'status-box'
     },
     memLevelCss () {
-      if (this.deviceData.memory < 30 && this.deviceData.memory != null) {
+      if (this.deviceData.memory < 172 && this.deviceData.memory != null) {
         return ''
       }
-      if (this.deviceData.memory > 30 && this.deviceData.memory < 50) {
+      if (this.deviceData.memory > 172 && this.deviceData.memory < 345) {
         return ''
       }
-      if (this.deviceData.memory > 50) {
+      if (this.deviceData.memory >= 345) {
         return ''
       }
       
