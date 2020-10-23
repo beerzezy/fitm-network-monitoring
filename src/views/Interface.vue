@@ -55,11 +55,17 @@
           @click="getInterface('sw3850'), showDetail('sw3850')">
           SW3850
         </v-btn>
-        <v-btn
+        <!-- <v-btn
           width="100"
           color="#039BE5"
           class="white--text"
           @click="getInterface('rsad'), showDetail('sg220')">
+        </v-btn> -->
+         <v-btn
+          width="100"
+          color="#039BE5"
+          class="white--text"
+          @click="getInterface('rsad'), showDetail('sw365048TS')">
           RSAD
         </v-btn>
       
