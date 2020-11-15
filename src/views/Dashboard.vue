@@ -341,7 +341,7 @@ export default {
       const stFormat = this.$moment(stTime).format('x')
       const edFormat = this.$moment(edTime).format('x')
 
-      const res = await TrafficProvider.fetchTraffic('sw9400', stFormat.substr(0, 10), edFormat.substr(0, 10))
+      const res = await TrafficProvider.fetchTrafficType('sw9400', "month")
       if (res) {
         this.chartData.rows = res.data
       }
