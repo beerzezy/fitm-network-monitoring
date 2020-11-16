@@ -357,7 +357,7 @@ export default {
       const dateTime = this.$moment().format('YYYY-MM-DD')
 
       const stTime = `${this.pickerStart} 00:00`
-      const edTime = `${this.pickerEnd} 23:59`
+      const edTime = `${this.pickerEnd} 00:00`
 
       if (stTime > edTime) {
         this.alertStartGreaterThanEndTime()
