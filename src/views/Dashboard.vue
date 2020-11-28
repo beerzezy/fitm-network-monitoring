@@ -26,7 +26,8 @@
             <ve-line
               :data="chartData"
               :settings="chartSettings"
-              :colors="colors">
+              :colors="colors"
+              :extend="extend1">
             </ve-line>
           </div>
         </div>
@@ -259,6 +260,11 @@ export default {
         metrics: ['inbound', 'outbound'],
         dimension: ['timestamp']
       },
+      extend1: {
+        series: {
+          smooth: false
+        }
+      },
       chartData: {
         columns: ['inbound', 'outbound'],
         rows: []
@@ -282,11 +288,12 @@ export default {
         columns: ['interface', 'outbound'],
         rows: []
       },
-      // grid: {
-      //   show: true,
-      //   backgroundColor: '#ffffff'
-      //   // borderColor: '#FF0000'
-      // },
+      chartExtend : {
+	      legend: {show: false}, // Hide legend
+	      series: {
+          center: ['50%', '50%']
+        }
+	    },
       ringSettings: {
         metrics: ['speed'],
         dimension: ['deviceName'],

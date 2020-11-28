@@ -108,6 +108,7 @@
                     :settings="chartSettings"
                     :colors="colors"
                     :loading="loading"
+                    :extend="extend1"
                     height="350px">
                   </ve-line>
               </div>
@@ -122,6 +123,7 @@
                   :settings="chartSettings"
                   :colors="colors"
                   :loading="loading"
+                  :extend="extend1"
                   height="350px">
                 </ve-line>
               </div>
@@ -139,6 +141,7 @@
                   :settings="chartSettings"
                   :colors="colors"
                   :loading="loading"
+                  :extend="extend1"
                   height="350px">
                 </ve-line>
               </div>
@@ -153,6 +156,7 @@
                     :settings="chartSettings"
                     :colors="colors"
                     :loading="loading"
+                    :extend="extend1"
                     height="350px">
                   </ve-line>
               </div>
@@ -170,6 +174,7 @@
                     :settings="chartSettings"
                     :colors="colors"
                     :loading="loading"
+                    :extend="extend1"
                     height="350px">
                   </ve-line>
               </div>
@@ -184,6 +189,7 @@
                     :settings="chartSettings"
                     :colors="colors"
                     :loading="loading"
+                    :extend="extend1"
                     height="350px">
                   </ve-line>
               </div>
@@ -201,6 +207,7 @@
                     :settings="chartSettings"
                     :colors="colors"
                     :loading="loading"
+                    :extend="extend1"
                     height="350px">
                   </ve-line>
               </div>
@@ -215,6 +222,7 @@
                     :settings="chartSettings"
                     :colors="colors"
                     :loading="loading"
+                    :extend="extend1"
                     height="350px">
                   </ve-line>
               </div>
@@ -257,6 +265,11 @@ export default {
       chartSettings: {
         metrics: ['inbound', 'outbound'],
         dimension: ['timestamp']
+      },
+      extend1: {
+        series: {
+          smooth: false
+        }
       },
       r124Data: {
         columns: ['inbound', 'outbound'],
