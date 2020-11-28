@@ -404,6 +404,7 @@ export default {
             console.log('shutPort')
         },
         validateShowPort (status) {
+            let user_info = JSON.parse(localStorage.getItem('user_info'))
             swal({
                 content: {
                     element: "input",
@@ -414,7 +415,7 @@ export default {
                 }
             })
             .then((value) => {
-                if (value == 'admin') {
+                if (value == user_info.password) {
                     if (status == 'up') {
                         this.shutDownPort()
                     } else if (status == 'down') {

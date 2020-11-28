@@ -97,6 +97,7 @@ export default {
           username: this.adminInfo.username,
           firstname: null,
           lastname: null,
+          password: this.adminInfo.password,
           role: this.adminInfo.role,
         }
         localStorage.setItem("user_info", JSON.stringify(prepareAdminInfo))
@@ -115,6 +116,7 @@ export default {
           username: this.userInfo.username,
           firstname: this.userInfo.firstname,
           lastname: this.userInfo.lastname,
+          password: this.userInfo.password,
           role: this.userInfo.role,
         }
         localStorage.setItem("user_info", JSON.stringify(this.userInfo))
