@@ -65,6 +65,7 @@
                   <tr>
                     <th scope="col" style="text-align:center;">No.</th>
                     <th scope="col" style="text-align:center;">Name</th>
+                    <th scope="col" style="text-align:center;">Place</th>
                     <th scope="col" style="text-align:center;">Value (MB)</th>
                   </tr>
                 </thead>
@@ -72,6 +73,7 @@
                   <tr v-for="(item,index) in inboundData.rows" :key="index">
                     <td style="text-align:center;">{{ index + 1 }}</td>
                     <td style="text-align:center;">{{ item.interface.replace("unrouted ", "") }}</td>
+                    <td style="text-align:center;">{{ item.place }}</td>
                     <td style="text-align:center;">{{ item.inbound }}</td>
                   </tr>
                 </tbody>
@@ -80,6 +82,7 @@
                   <tr v-for="(item,index) in outboundData.rows" :key="index">
                     <td style="text-align:center;">{{ index + 1 }}</td>
                     <td style="text-align:center;">{{ item.interface.replace("unrouted ", "") }}</td>
+                    <td style="text-align:center;">{{ item.place }}</td>
                     <td style="text-align:center;">{{ item.outbound }}</td>
                   </tr>
                 </tbody>
@@ -92,149 +95,6 @@
 
   </div>
 
-    <!-- <div class="y-scroll">
-      <div class="contain">
-        <div class="mx-8">
-          <div class="dp-flex">
-            <div class="bg-ct flex-38 mr-2">
-              <div class="pad-chart">
-                <div class="title-chart">
-                  <p>Traffic Radio</p>
-                </div>
-                <div class="bg-chart">
-                  <ve-ring
-                    :data="ringData"
-                    :settings="ringSettings">
-                  </ve-ring>
-                </div>
-              </div>
-            </div>
-            <div class="bg-ct flex-62">
-              <div class="pad-chart pb-0">
-                <div class="title-chart">
-                  <p>Internet Traffic SW9400  {{ showType }} (Inbound / MB, Outbound / MB)</p>
-                </div>
-                <div class="bg-chart">
-                  <ve-line
-                    :data="chartData"
-                    :settings="chartSettings"
-                    :colors="colors">
-                  </ve-line>
-                </div>
-              </div>
-            </div>
-          </div>
-          <v-row>
-            <v-col cols="12">
-              <div class="bg-ct mt-2">
-                <div class="pad-chart">
-                  <v-row>
-                    <div class="title-chart">
-                      <p>Top 10 Rank Vlan Traffic</p>
-                    </div>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                      depressed
-                      class="mr-5 white--text"
-                      color="#FF0000"
-                      @click="topRank = 'inbound'">
-                      Inbound
-                    </v-btn>
-                    <v-btn
-                      depressed
-                      class="white--text"
-                      color="#039BE5"
-                      @click="topRank = 'outbound'">
-                      Outbound
-                    </v-btn>
-                  </v-row>
-                  <div class="bg-chart">
-                    <ve-histogram
-                      v-if="topRank === 'inbound'"
-                      height="350px"
-                      :data="inboundData"
-                      :settings="inboundSettings"
-                      :colors="inboundColors"
-                      :extend="extend">
-                    </ve-histogram>
-                    <ve-histogram
-                      v-else
-                      height="350px"
-                      :data="outboundData"
-                      :settings="outboundSettings"
-                      :colors="outboundColors"
-                      :extend="extend">
-                    </ve-histogram>
-                  </div>
-                  <div v-if="topRank === 'inbound'">
-                    <table>
-                      <tr>
-                        <th class="text-center">
-                          No.
-                        </th>
-                        <th class="text-center">
-                          Name
-                        </th>
-                        <th class="text-center">
-                          Network
-                        </th>
-                        <th class="text-center">
-                          Value (MB)
-                        </th>
-                      </tr>
-                      <tr
-                        v-for="(item,index) in inboundData.rows"
-                        :key="index"
-                        style="color: lightgrey;">
-                        <td class="text-center">
-                          {{ index + 1 }}
-                        </td>
-                        <td class="text-center">
-                          {{ item.interface.replace("unrouted ", "") }}
-                        </td>
-                         <td>{{ }}</td> 
-                        <td class="text-center">
-                          {{ item.inbound }}
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                  <div v-else>
-                    <table>
-                      <tr>
-                        <th class="text-center">
-                          No.
-                        </th>
-                        <th class="text-center">
-                          Name
-                        </th>
-                        <th class="text-center">
-                          Value (MB)
-                        </th>
-                      </tr>
-                      <tr
-                        v-for="(item,index) in outboundData.rows"
-                        :key="index"
-                        style="color: lightgrey;">
-                        <td class="text-center">
-                          {{ index + 1 }}.
-                        </td>
-                        <td class="text-center">
-                          {{ item.interface.replace("unrouted ", "") }}
-                        </td>
-                        <td class="text-center">
-                          {{ item.outbound }}
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </v-col>
-          </v-row>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
