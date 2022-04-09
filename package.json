@@ -14,7 +14,7 @@
     "echarts": "^4.5.0",
     "firebase": "^7.18.0",
     "humps": "^2.0.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "sweetalert": "^2.1.2",
     "v-charts": "^1.19.0",
     "vee-validate": "^3.3.9",
